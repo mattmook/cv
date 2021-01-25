@@ -1,0 +1,22 @@
+
+CREATE TABLE experience (
+  experienceId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  company TEXT NOT NULL,
+  logoUrl TEXT NOT NULL,
+  industry TEXT NOT NULL,
+  location TEXT NOT NULL,
+  period TEXT NOT NULL
+);
+
+experiences:
+SELECT * FROM experience;
+
+insertExperience:
+INSERT INTO experience
+VALUES (NULL, ?, ?, ?, ?, ?);
+
+deleteExperiences:
+DELETE FROM experience;
+
+lastInsertRowId:
+SELECT last_insert_rowid();

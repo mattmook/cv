@@ -1,0 +1,18 @@
+
+CREATE TABLE role (
+  experienceId INTEGER NOT NULL,
+  title TEXT NOT NULL,
+  team TEXT,
+  period TEXT NOT NULL,
+  detailUrl TEXT NOT NULL
+);
+
+rolesForExperience:
+SELECT * FROM role WHERE experienceId = ?;
+
+insertRole:
+INSERT INTO role
+VALUES (?, ?, ?, ?, ?);
+
+deleteRoles:
+DELETE FROM role;

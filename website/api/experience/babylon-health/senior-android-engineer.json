@@ -1,0 +1,12 @@
+[
+  "Redefined testing strategy and introduced screenshot and interaction testing. Additionally, standardised unit tests around JUnit 5 and automated the conversion of over 1000 unit tests from Spek 1 and 2.",
+  "Security analysis of the main Babylon app through threat modelling, as well as re-evaluation of DexGuard, resulting in the same level of protection at a reduced cost to the business.",
+  "Created and open-sourced certificate-transparency-android to help prevent man-in-the-middle attacks.",
+  "Migrated SDKs from RxJava to Kotlin coroutines to improve code readability and development time. Involved restructuring the existing module and package structure.",
+  "Java to Kotlin conversions including the removal of annotation processors to speed up builds.",
+  "Introduction of ArchUnit along with custom Lint and detekt rules to enforce architectural patterns in the code base.",
+  "Moved documentation into the code base and enforced consistency through creation of a markdown lint Gradle plugin as a personal project, now open-sourced.",
+  "Helped open-source the recruitment process and grew the Android team from 12 engineers to over 40 within a year.",
+  "Redesigned the MVI architecture around coroutines with a plugin mechanism and improved type safety. Open-sourced the project to share with the Android community, which further improved the code quality.",
+  "Reimplemented analytics making it agnostic of the trackers and automated capturing of screen view events across both activity and fragment lifecycles."
+]

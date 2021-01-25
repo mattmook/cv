@@ -1,0 +1,5 @@
+[
+  "Javascript development on the PureDeal trading platform",
+  "Built maven plugin to allow the modularisation, linting and optimisation of our Javascript projects at a time when no third-party build tools existed.",
+  "Established coding guidelines for Javascript and CSS."
+]

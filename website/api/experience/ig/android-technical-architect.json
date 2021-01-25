@@ -1,0 +1,8 @@
+[
+  "Introduced Firebase Test lab to move UI automation test to the cloud.",
+  "Used Docker to ensure the availability of tools such as openssl for security testing HTTPS connections.",
+  "Performed secure code analysis of IGs Android apps.",
+  "Initial modularisation of the trading app code base to improve code reusability and reduce project build-times.",
+  "Built an annotation processor to help reduce the teams boiler-plate code when using Loaders.",
+  "Created Bitbucket and Gradle plugins to better support the Gitflow branching model following migration from SVN."
+]

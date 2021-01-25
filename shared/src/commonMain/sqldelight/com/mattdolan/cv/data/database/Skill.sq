@@ -1,0 +1,15 @@
+
+CREATE TABLE skill (
+  skill TEXT NOT NULL,
+  since INTEGER AS Int
+);
+
+skills:
+SELECT * FROM skill;
+
+insertSkill:
+INSERT INTO skill
+VALUES (?, ?);
+
+deleteSkills:
+DELETE FROM skill;

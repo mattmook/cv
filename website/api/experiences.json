@@ -1,0 +1,71 @@
+[
+  {
+    "company": "Babylon Health",
+    "logoUrl": "https://mattdolan.com/cv/company-logo/babylon-health.svg",
+    "industry": "Health care",
+    "location": "London",
+    "period": "07/2018 - present",
+    "roles": [
+      {
+        "title": "Senior Android Engineer",
+        "team": "Android platform team",
+        "period": "07/2018 - present",
+        "detailUrl": "experience/babylon-health/senior-android-engineer.json"
+      }
+    ]
+  },
+  {
+    "company": "IG",
+    "logoUrl": "https://mattdolan.com/cv/company-logo/ig.svg",
+    "industry": "Financial services",
+    "location": "London",
+    "period": "02/2008 - 07/2018",
+    "roles": [
+      {
+        "title": "Mobile Platform Architect",
+        "period": "07/2017 - 07/2018",
+        "detailUrl": "experience/ig/mobile-platform-architect.json"
+      },
+      {
+        "title": "Android Technical Architect",
+        "period": "07/2014 - 07/2017",
+        "detailUrl": "experience/ig/android-technical-architect.json"
+      },
+      {
+        "title": "Android Technical Lead",
+        "period": "01/2011 - 07/2014",
+        "detailUrl": "experience/ig/android-technical-lead.json"
+      },
+      {
+        "title": "iOS Developer",
+        "period": "01/2010 - 01/2011",
+        "detailUrl": "experience/ig/ios-developer.json"
+      },
+      {
+        "title": "Web Developer",
+        "period": "02/2008 - 01/2010",
+        "detailUrl": "experience/ig/web-developer.json"
+      }
+    ]
+  },
+  {
+    "company": "Fidelity International",
+    "logoUrl": "https://mattdolan.com/cv/company-logo/fidelity-international.svg",
+    "industry": "Investment management",
+    "location": "London",
+    "period": "08/2001 - 01/2008",
+    "roles": [
+      {
+        "title": "Analyst Programmer",
+        "period": "02/2003 - 01/2008",
+        "detailUrl": "experience/fidelity-international/analyst-programmer.json"
+      },
+      {
+        "title": "Analyst Programmer",
+        "team": "Work Placement",
+        "period": "08/2001 - 09/2002",
+        "detailUrl": "experience/fidelity-international/work-placement-analyst-programmer.json"
+      }
+    ]
+  }
+]

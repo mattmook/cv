@@ -1,0 +1,14 @@
+build:
+  maxIssues: 0
+
+style:
+  MagicNumber:
+    excludes: [ '**/test/**', '**/*Test/**', '**/*Test.kt', '**/*.gradle.kts' ]
+  MaxLineLength:
+    active: false
+
+formatting:
+  MaximumLineLength:
+    maxLineLength: 145
+  StringTemplate:
+    excludes: "**/*.gradle.kts"

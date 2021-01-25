@@ -1,0 +1,74 @@
+[
+  {
+    "skill": "Android",
+    "since": 2011
+  },
+  {
+    "skill": "Kotlin",
+    "since": 2017
+  },
+  {
+    "skill": "Java",
+    "since": 2003
+  },
+  {
+    "skill": "Gradle"
+  },
+  {
+    "skill": "Dagger"
+  },
+  {
+    "skill": "Koin"
+  },
+  {
+    "skill": "Coroutines"
+  },
+  {
+    "skill": "Live Data"
+  },
+  {
+    "skill": "RxJava"
+  },
+  {
+    "skill": "Retrofit"
+  },
+  {
+    "skill": "Room"
+  },
+  {
+    "skill": "Groupie"
+  },
+  {
+    "skill": "ViewModel"
+  },
+  {
+    "skill": "JUnit"
+  },
+  {
+    "skill": "Spek"
+  },
+  {
+    "skill": "Espresso"
+  },
+  {
+    "skill": "Robolectric"
+  },
+  {
+    "skill": "Mockito"
+  },
+  {
+    "skill": "Detekt"
+  },
+  {
+    "skill": "Lint"
+  },
+  {
+    "skill": "GitHub Actions"
+  },
+  {
+    "skill": "MVI"
+  },
+  {
+    "skill": "Clean architecture"
+  }
+]

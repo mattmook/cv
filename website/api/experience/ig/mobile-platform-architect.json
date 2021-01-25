@@ -1,0 +1,8 @@
+[
+  "Standardising the application security process and providing security training across the business.",
+  "Managing the continuous improvement of the technology stack, ensuring the evolution of the mobile platforms, including the adoption of Kotlin across all the Android apps.",
+  "Review of the eight mobile apps to ensure we are still using the correct tools and libraries such as Jackson & GSON vs the newer Moshi as well as decommissioning Retrolambda and AutoValue.",
+  "Assessing code sharing technologies such as Kotlin/Native, React Native and j2objc with the aim of reducing development costs.",
+  "Evaluating the build server SLAs and moving continuous delivery infrastructure to the cloud resulting in shorter development lifecycles.",
+  "Coaching new starters on the various systems and their interactions, for instance, pricing and dealing flows."
+]

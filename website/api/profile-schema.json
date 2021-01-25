@@ -1,0 +1,131 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "required": [
+    "name",
+    "tagline",
+    "location",
+    "skills",
+    "experience"
+  ],
+  "properties": {
+    "name": {
+      "$id": "#name",
+      "type": "string"
+    },
+    "tagline": {
+      "$id": "#tagline",
+      "type": "string"
+    },
+    "location": {
+      "$id": "#location",
+      "type": "string"
+    },
+    "skills": {
+      "$id": "#skills",
+      "type": "array",
+      "items": {
+        "$id": "#items",
+        "anyOf": [
+          {
+            "$id": "#0",
+            "type": "object",
+            "required": [
+              "skill"
+            ],
+            "properties": {
+              "skill": {
+                "$id": "#skill",
+                "type": "string"
+              },
+              "since": {
+                "$id": "#since",
+                "type": "integer"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "experience": {
+      "$id": "#experience",
+      "type": "array",
+      "items": {
+        "$id": "#items",
+        "anyOf": [
+          {
+            "$id": "#0",
+            "type": "object",
+            "required": [
+              "company",
+              "logoUrl",
+              "industry",
+              "location",
+              "period",
+              "roles",
+              "detailUrl"
+            ],
+            "properties": {
+              "company": {
+                "$id": "#company",
+                "type": "string"
+              },
+              "logoUrl": {
+                "$id": "#logoUrl",
+                "type": "string"
+              },
+              "industry": {
+                "$id": "#industry",
+                "type": "string"
+              },
+              "location": {
+                "$id": "#location",
+                "type": "string"
+              },
+              "period": {
+                "$id": "#period",
+                "type": "string"
+              },
+              "roles": {
+                "$id": "#roles",
+                "type": "array",
+                "items": {
+                  "$id": "#items",
+                  "anyOf": [
+                    {
+                      "$id": "#0",
+                      "type": "object",
+                      "required": [
+                        "title",
+                        "period"
+                      ],
+                      "properties": {
+                        "title": {
+                          "$id": "#title",
+                          "type": "string"
+                        },
+                        "team": {
+                          "$id": "#team",
+                          "type": "string"
+                        },
+                        "period": {
+                          "$id": "#period",
+                          "type": "string"
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "detailUrl": {
+                "$id": "#detailUrl",
+                "type": "string"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
