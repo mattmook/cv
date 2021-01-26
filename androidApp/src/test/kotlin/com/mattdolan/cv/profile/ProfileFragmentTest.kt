@@ -21,7 +21,6 @@ import android.os.Looper
 import android.view.View
 import androidx.navigation.Navigation
 import androidx.navigation.testing.TestNavHostController
-import androidx.test.core.app.ActivityScenario.launch
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.UiController
@@ -30,7 +29,6 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers.isRoot
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.mattdolan.cv.MainActivity
 import com.mattdolan.cv.androidApp.R
 import com.mattdolan.cv.test.launchFragmentInHiltContainer
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -97,15 +95,20 @@ class ProfileFragmentTest {
             Navigation.setViewNavController(requireView(), navController)
         }
 
+        shadowOf(Looper.getMainLooper()).idle()
+
+        onView(isRoot()).perform(waitFor(10000))
 
         shadowOf(Looper.getMainLooper()).idle()
 
         onView(isRoot()).perform(waitFor(10000))
 
+        shadowOf(Looper.getMainLooper()).idle()
+
         //onView(withId(R.id.company)).perform(click())
 
+        println("perform click")
+
         onView(withId(R.id.error_button)).perform(click())
-
-
     }
 }

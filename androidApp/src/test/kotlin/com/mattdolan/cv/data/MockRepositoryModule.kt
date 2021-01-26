@@ -36,22 +36,22 @@ object MockRepositoryModule {
     fun provideProfileRepository() = object : ProfileRepository {
         override suspend fun personalDetails(): PersonalDetails {
             println("called personalDetails")
-            TODO("Not yet implemented")
+            throw IllegalStateException("Not populated")
         }
 
         override suspend fun experiences(): List<Experience> {
             println("called experiences")
-            TODO("Not yet implemented")
+            throw IllegalStateException("Not populated")
         }
 
         override suspend fun skills(): List<Skill> {
             println("called skills")
-            TODO("Not yet implemented")
+            throw IllegalStateException("Not populated")
         }
 
         override suspend fun roleDetails(role: Role): RoleDetails {
             println("called roleDetails")
-            TODO("Not yet implemented")
+            throw IllegalStateException("Not populated")
         }
     }
 }

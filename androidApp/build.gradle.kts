@@ -1,3 +1,5 @@
+import dagger.hilt.android.plugin.HiltExtension
+
 /*
  * Copyright 2021 Matthew Dolan
  *
@@ -123,4 +125,8 @@ android {
             isIncludeAndroidResources = true
         }
     }
+}
+
+configure<HiltExtension> {
+    enableTransformForLocalTests = true
 }
