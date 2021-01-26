@@ -19,6 +19,9 @@
         </Constraint>
 
         <!-- content -->
+        <Constraint android:id="@+id/background">
+            <PropertySet android:visibility="invisible" />
+        </Constraint>
         <Constraint android:id="@+id/image">
             <PropertySet android:visibility="invisible" />
         </Constraint>
@@ -69,6 +72,9 @@
         </Constraint>
 
         <!-- content -->
+        <Constraint android:id="@+id/background">
+            <PropertySet android:visibility="visible" />
+        </Constraint>
         <Constraint android:id="@+id/image">
             <PropertySet android:visibility="visible" />
         </Constraint>
