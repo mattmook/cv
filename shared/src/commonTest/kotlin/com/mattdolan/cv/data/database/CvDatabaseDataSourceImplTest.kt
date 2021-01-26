@@ -19,6 +19,8 @@ package com.mattdolan.cv.data.database
 import com.mattdolan.cv.data.nextExperience
 import com.mattdolan.cv.data.nextList
 import com.mattdolan.cv.data.nextPersonalDetails
+import com.mattdolan.cv.data.nextRole
+import com.mattdolan.cv.data.nextRoleDetails
 import com.mattdolan.cv.data.nextSkill
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.nulls.shouldBeNull
@@ -39,6 +41,7 @@ class CvDatabaseDataSourceImplTest {
         cvDatabaseDataSource.getExperiences().shouldBeNull()
         cvDatabaseDataSource.getPersonalDetails().shouldBeNull()
         cvDatabaseDataSource.getSkills().shouldBeNull()
+        cvDatabaseDataSource.getRoleDetails(Random.nextRole()).shouldBeNull()
     }
 
     @Test
@@ -78,5 +81,38 @@ class CvDatabaseDataSourceImplTest {
 
         // Then the result matches the original data stored
         results.shouldContainExactly(experiences)
+    }
+
+    @Test
+    fun savesRoleDetails() {
+        // Given a role details object set in the database
+        val role = Random.nextRole()
+        val roleDetails = Random.nextRoleDetails()
+        cvDatabaseDataSource.setRoleDetails(role, roleDetails)
+
+        // When we get role details from the database
+        val results = cvDatabaseDataSource.getRoleDetails(role)
+
+        // Then the result matches the original data stored
+        results.shouldBe(roleDetails)
+    }
+
+    @Test
+    fun clearsDatabase() {
+        // Given a populated database
+        val role = Random.nextRole()
+        cvDatabaseDataSource.setPersonalDetails(Random.nextPersonalDetails())
+        cvDatabaseDataSource.setSkills(Random.nextList { Random.nextSkill() })
+        cvDatabaseDataSource.setExperiences(Random.nextList { Random.nextExperience() })
+        cvDatabaseDataSource.setRoleDetails(role, Random.nextRoleDetails())
+
+        // When we clear the database
+        cvDatabaseDataSource.clearDatabase()
+
+        // Then the database is empty
+        cvDatabaseDataSource.getExperiences().shouldBeNull()
+        cvDatabaseDataSource.getPersonalDetails().shouldBeNull()
+        cvDatabaseDataSource.getSkills().shouldBeNull()
+        cvDatabaseDataSource.getRoleDetails(role).shouldBeNull()
     }
 }
