@@ -119,14 +119,14 @@ class ProfileFragment : Fragment() {
 
         when (state) {
             ProfileState.Loading -> {
-                if (binding.mainView.currentState == R.id.error) {
+                if (binding.mainView.currentState != R.id.loading) {
                     println("trigger state change loading")
                     binding.mainView.setTransition(R.id.loadingToError)
                     binding.mainView.transitionToStart()
                 }
             }
             ProfileState.Error -> {
-                if (binding.mainView.currentState == R.id.loading) {
+                if (binding.mainView.currentState != R.id.error) {
                     println("trigger state change error")
                     binding.mainView.setTransition(R.id.loadingToError)
                     binding.mainView.transitionToEnd()

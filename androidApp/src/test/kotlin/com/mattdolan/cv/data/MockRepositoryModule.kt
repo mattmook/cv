@@ -27,6 +27,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
+import kotlinx.coroutines.delay
 
 @Module
 @TestInstallIn(components = [SingletonComponent::class], replaces = [RepositoryModule::class])
@@ -36,16 +37,19 @@ object MockRepositoryModule {
     fun provideProfileRepository() = object : ProfileRepository {
         override suspend fun personalDetails(): PersonalDetails {
             println("called personalDetails")
+            delay(1000)
             throw IllegalStateException("Not populated")
         }
 
         override suspend fun experiences(): List<Experience> {
             println("called experiences")
+            delay(1000)
             throw IllegalStateException("Not populated")
         }
 
         override suspend fun skills(): List<Skill> {
             println("called skills")
+            delay(1000)
             throw IllegalStateException("Not populated")
         }
 

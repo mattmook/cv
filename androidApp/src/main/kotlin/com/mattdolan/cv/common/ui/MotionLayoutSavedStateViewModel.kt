@@ -22,6 +22,8 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.idling.CountingIdlingResource
 import java.lang.ref.WeakReference
 
 /**
@@ -34,6 +36,8 @@ class MotionLayoutSavedStateViewModel @ViewModelInject constructor(
 
     private var motionLayout: WeakReference<MotionLayout>? = null
 
+    private val idlingResource = CountingIdlingResource("motionLayout")
+
     private val listener = object : MotionLayout.TransitionListener {
         override fun onTransitionChange(motionLayout: MotionLayout, startId: Int, endId: Int, progress: Float) {
             savedStateHandle.set("motion", motionLayout.transitionState)
@@ -41,10 +45,12 @@ class MotionLayoutSavedStateViewModel @ViewModelInject constructor(
 
         override fun onTransitionCompleted(motionLayout: MotionLayout, currentId: Int) {
             savedStateHandle.set("motion", motionLayout.transitionState)
+            idlingResource.decrement()
         }
 
         override fun onTransitionStarted(motionLayout: MotionLayout, startId: Int, endId: Int) {
             savedStateHandle.set("motion", motionLayout.transitionState)
+            idlingResource.increment()
         }
 
         override fun onTransitionTrigger(motionLayout: MotionLayout, triggerId: Int, positive: Boolean, progress: Float) = Unit
@@ -62,11 +68,14 @@ class MotionLayoutSavedStateViewModel @ViewModelInject constructor(
         }
 
         motionLayout.addTransitionListener(listener)
+
+        IdlingRegistry.getInstance().register(idlingResource)
     }
 
     override fun onCleared() {
         super.onCleared()
 
+        IdlingRegistry.getInstance().unregister(idlingResource)
         motionLayout?.get()?.removeTransitionListener(listener)
         motionLayout?.clear()
         motionLayout = null

@@ -19,27 +19,32 @@ package com.mattdolan.cv.profile
 import android.os.Build
 import android.os.Looper
 import android.view.View
-import androidx.navigation.Navigation
-import androidx.navigation.testing.TestNavHostController
-import androidx.test.core.app.ApplicationProvider
+import androidx.test.core.app.ActivityScenario.launch
+import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.isRoot
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import com.mattdolan.cv.MainActivity
 import com.mattdolan.cv.androidApp.R
-import com.mattdolan.cv.test.launchFragmentInHiltContainer
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.HiltTestApplication
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import org.hamcrest.Matcher
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
+
 
 // This test does not run through the IDE
 // See https://github.com/google/dagger/issues/1956
@@ -53,19 +58,34 @@ class ProfileFragmentTest {
     //@get:Rule
     //val activityRule = ActivityScenarioRule(MainActivity::class.java)
 
-    /*@Test
+    @Test
     fun testThis() {
         //activityRule.
         val activityScenario = launch(MainActivity::class.java)
 
+        repeat(30) {
+            runBlocking { delay(100) }
+            Espresso.onIdle()
+            shadowOf(Looper.getMainLooper()).idle()
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+        }
+
         onView(withId(R.id.error_button)).perform(click())
 
+        repeat(30) {
+            runBlocking { delay(100) }
+            Espresso.onIdle()
+            shadowOf(Looper.getMainLooper()).idle()
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+        }
+
+        onView(withId(R.id.loading)).check(matches(isDisplayed()))
 
         //val scenario = launchFragmentInContainer<ProfileFragment>()
         //activityRule.scenario
 
         activityScenario.close()
-    }*/
+    }
 
     fun waitFor(delay: Long): ViewAction {
         return object : ViewAction {
@@ -85,7 +105,7 @@ class ProfileFragmentTest {
         }
     }
 
-    @Test
+    /*@Test
     fun testSomethingElse() {
         val navController = TestNavHostController(ApplicationProvider.getApplicationContext()).apply {
             setGraph(R.navigation.nav_graph)
@@ -95,7 +115,7 @@ class ProfileFragmentTest {
             Navigation.setViewNavController(requireView(), navController)
         }
 
-        shadowOf(Looper.getMainLooper()).idle()
+        /*shadowOf(Looper.getMainLooper()).idle()
 
         onView(isRoot()).perform(waitFor(10000))
 
@@ -103,12 +123,17 @@ class ProfileFragmentTest {
 
         onView(isRoot()).perform(waitFor(10000))
 
-        shadowOf(Looper.getMainLooper()).idle()
+        shadowOf(Looper.getMainLooper()).idleFor(5, TimeUnit.SECONDS)*/
+
+        //shadowOf(Looper.getMainLooper()).idleConstantly(true)
+
+        //ShadowApplication.runBackgroundTasks()
 
         //onView(withId(R.id.company)).perform(click())
 
         println("perform click")
 
         onView(withId(R.id.error_button)).perform(click())
-    }
+    }*/
 }
+

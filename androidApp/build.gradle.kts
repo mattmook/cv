@@ -73,6 +73,7 @@ dependencies {
     kaptTest("com.google.dagger:hilt-android-compiler:${Versions.Google.dagger}")
 
     // Testing
+    implementation("androidx.test.espresso:espresso-idling-resource:${Versions.AndroidX.espresso}")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}")
     testImplementation("androidx.test.espresso:espresso-core:${Versions.AndroidX.espresso}")
     testImplementation("androidx.test:runner:${Versions.AndroidX.testRunner}")
