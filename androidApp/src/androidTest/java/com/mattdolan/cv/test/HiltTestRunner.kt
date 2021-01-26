@@ -14,24 +14,16 @@
  * limitations under the License.
  */
 
-package com.mattdolan.cv.di
+package com.mattdolan.cv.test
 
+import android.app.Application
 import android.content.Context
-import com.mattdolan.cv.Sdk
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.android.scopes.ViewModelScoped
+import androidx.test.runner.AndroidJUnitRunner
+import dagger.hilt.android.testing.HiltTestApplication
 
-@Module
-@InstallIn(ViewModelComponent::class)
-object RepositoryModule {
-
-    @Provides
-    @ViewModelScoped
-    fun provideProfileRepository(
-        @ApplicationContext context: Context
-    ) = Sdk(context).profileRepository()
+class HiltTestRunner : AndroidJUnitRunner() {
+    override fun newApplication(classLoader: ClassLoader?, appName: String?, context: Context?): Application {
+        println("HiltTestRunner")
+        return super.newApplication(classLoader, HiltTestApplication::class.java.name, context)
+    }
 }

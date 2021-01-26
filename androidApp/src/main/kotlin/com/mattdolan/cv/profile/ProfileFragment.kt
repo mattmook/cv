@@ -125,7 +125,7 @@ class ProfileFragment : Fragment() {
                 }
             }
             is ProfileState.Ready -> {
-                if (binding.mainView.currentState == R.id.loading) {
+                if (binding.mainView.currentState != R.id.ready && binding.mainView.currentState != R.id.readyCollapsed) {
                     binding.mainView.setTransition(R.id.loadingToReady)
                     binding.mainView.transitionToEnd()
                 }

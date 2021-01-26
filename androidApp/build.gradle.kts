@@ -1,3 +1,5 @@
+import dagger.hilt.android.plugin.HiltExtension
+
 /*
  * Copyright 2021 Matthew Dolan
  *
@@ -40,6 +42,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.lifecycle}")
     implementation("androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.navigation}")
     implementation("androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.navigation}")
+    androidTestImplementation("androidx.navigation:navigation-testing:${Versions.AndroidX.navigation}")
     implementation("org.orbit-mvi:orbit-viewmodel:${Versions.orbitMvi}")
     testImplementation("org.orbit-mvi:orbit-test:${Versions.orbitMvi}")
 
@@ -66,12 +69,18 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:${Versions.Google.dagger}")
     androidTestImplementation("com.google.dagger:hilt-android-testing:${Versions.Google.dagger}")
     kaptAndroidTest("com.google.dagger:hilt-android-compiler:${Versions.Google.dagger}")
-    testImplementation("com.google.dagger:hilt-android-testing:${Versions.Google.dagger}")
-    kaptTest("com.google.dagger:hilt-android-compiler:${Versions.Google.dagger}")
+    kaptAndroidTest("androidx.hilt:hilt-compiler:${Versions.AndroidX.hilt}")
 
     // Testing
+    implementation("androidx.test.espresso:espresso-idling-resource:${Versions.AndroidX.espresso}")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}")
-
+    testImplementation("junit:junit:${Versions.junit4}")
+    androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.AndroidX.espresso}")
+    androidTestImplementation("androidx.test:runner:${Versions.AndroidX.testRunner}")
+    androidTestImplementation("androidx.test:rules:${Versions.AndroidX.testRules}")
+    androidTestImplementation("androidx.test.ext:junit-ktx:${Versions.AndroidX.testExtJunit}")
+    debugImplementation("androidx.fragment:fragment-testing:${Versions.AndroidX.fragmentTesting}")
+    androidTestImplementation("com.kaspersky.android-components:kaspresso:${Versions.kaspresso}")
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:${Versions.desugar}")
 }
@@ -85,6 +94,7 @@ android {
         versionCode = 1
         versionName = "1.0"
         vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner = "com.mattdolan.cv.test.HiltTestRunner"
     }
     buildTypes {
         getByName("release") {
@@ -111,4 +121,14 @@ android {
     sourceSets.all {
         java.srcDir("src/$name/kotlin")
     }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+}
+
+configure<HiltExtension> {
+    enableTransformForLocalTests = true
 }
