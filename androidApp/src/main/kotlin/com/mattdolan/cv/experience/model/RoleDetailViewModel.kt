@@ -16,21 +16,22 @@
 
 package com.mattdolan.cv.experience.model
 
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import com.mattdolan.cv.common.SideEffect
 import com.mattdolan.cv.common.viewmodel.ViewModelSetup
 import com.mattdolan.cv.domain.ProfileRepository
 import com.mattdolan.cv.experience.RoleDetailArguments
+import dagger.hilt.android.lifecycle.HiltViewModel
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
+import javax.inject.Inject
 
-class RoleDetailViewModel @ViewModelInject constructor(
+@HiltViewModel
+class RoleDetailViewModel @Inject constructor(
     private val profileRepository: ProfileRepository,
-    @Assisted savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle
 ) : ViewModelSetup<RoleDetailArguments>(), ContainerHost<RoleDetailState, SideEffect> {
 
     private lateinit var arguments: RoleDetailArguments
