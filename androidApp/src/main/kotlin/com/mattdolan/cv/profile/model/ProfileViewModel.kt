@@ -42,19 +42,12 @@ class ProfileViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel(), ContainerHost<ProfileState, SideEffect> {
 
-    init {
-        println("created viewmodel")
-    }
-
     override val container: Container<ProfileState, SideEffect> = container(ProfileState.Loading, savedStateHandle) {
-        println("init ProfileViewModel")
         if (it !is ProfileState.Ready) loadProfile()
     }
 
     fun loadProfile() = intent {
         try {
-            println("loadProfile")
-
             reduce { ProfileState.Loading }
 
             val (personalDetails, skills, experiences) = coroutineScope {
@@ -65,13 +58,9 @@ class ProfileViewModel @Inject constructor(
                 ).awaitAll()
             }
 
-            println("loadProfile ready")
-
             @Suppress("UNCHECKED_CAST")
             reduce { ProfileState.Ready(personalDetails as PersonalDetails, skills as List<Skill>, experiences as List<Experience>) }
         } catch (expected: Exception) {
-            println("loadProfile exception")
-
             reduce { ProfileState.Error }
         }
     }

@@ -81,6 +81,8 @@ dependencies {
     testImplementation("androidx.test.ext:junit-ktx:${Versions.AndroidX.testExtJunit}")
     testImplementation("org.robolectric:robolectric:4.5")
     debugImplementation("androidx.fragment:fragment-testing:${Versions.AndroidX.fragmentTesting}")
+    testImplementation("androidx.fragment:fragment-testing:${Versions.AndroidX.fragmentTesting}")
+    testImplementation("com.kaspersky.android-components:kaspresso:${Versions.kaspresso}")
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:${Versions.desugar}")
 }

@@ -35,6 +35,7 @@ object Versions {
     const val sqliter = "0.7.1"
 
     const val junit4 = "4.13.1"
+    const val kaspresso = "1.2.0"
     const val kotest = "4.3.1"
 
     const val desugar = "1.1.1"

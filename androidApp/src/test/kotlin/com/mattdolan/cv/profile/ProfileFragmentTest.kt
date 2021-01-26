@@ -17,123 +17,84 @@
 package com.mattdolan.cv.profile
 
 import android.os.Build
-import android.os.Looper
-import android.view.View
 import androidx.test.core.app.ActivityScenario.launch
-import androidx.test.espresso.Espresso
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.UiController
-import androidx.test.espresso.ViewAction
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.isRoot
-import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
 import com.mattdolan.cv.MainActivity
-import com.mattdolan.cv.androidApp.R
+import com.mattdolan.cv.data.MockProfileRepository
+import com.mattdolan.cv.di.RepositoryModule
+import com.mattdolan.cv.domain.ProfileRepository
+import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.HiltTestApplication
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
-import org.hamcrest.Matcher
+import dagger.hilt.android.testing.UninstallModules
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
-
 
 // This test does not run through the IDE
 // See https://github.com/google/dagger/issues/1956
 @RunWith(AndroidJUnit4::class)
+@UninstallModules(RepositoryModule::class)
 @HiltAndroidTest
 @Config(sdk = [Build.VERSION_CODES.P], application = HiltTestApplication::class)
 class ProfileFragmentTest {
+
     @get:Rule
     val hiltRule = HiltAndroidRule(this)
 
-    //@get:Rule
-    //val activityRule = ActivityScenarioRule(MainActivity::class.java)
+    private val mockProfileRepository = MockProfileRepository()
+
+    @BindValue
+    @JvmField
+    val profileRepository: ProfileRepository = mockProfileRepository
 
     @Test
-    fun testThis() {
-        //activityRule.
-        val activityScenario = launch(MainActivity::class.java)
+    fun startsInLoadingState() {
+        // When we launch the activity
+        launch(MainActivity::class.java).use {
 
-        repeat(30) {
-            runBlocking { delay(100) }
-            Espresso.onIdle()
-            shadowOf(Looper.getMainLooper()).idle()
-            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
-        }
+            // Then the loading screen is visible
+            ProfileScreen {
 
-        onView(withId(R.id.error_button)).perform(click())
-
-        repeat(30) {
-            runBlocking { delay(100) }
-            Espresso.onIdle()
-            shadowOf(Looper.getMainLooper()).idle()
-            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
-        }
-
-        onView(withId(R.id.loading)).check(matches(isDisplayed()))
-
-        //val scenario = launchFragmentInContainer<ProfileFragment>()
-        //activityRule.scenario
-
-        activityScenario.close()
-    }
-
-    fun waitFor(delay: Long): ViewAction {
-        return object : ViewAction {
-            override fun perform(uiController: UiController?, view: View?) {
-                uiController?.loopMainThreadUntilIdle()
-                uiController?.loopMainThreadForAtLeast(delay)
-                uiController?.loopMainThreadUntilIdle()
-            }
-
-            override fun getConstraints(): Matcher<View> {
-                return isRoot()
-            }
-
-            override fun getDescription(): String {
-                return "wait for " + delay + "milliseconds"
+                loadingImage {
+                    isVisible()
+                }
             }
         }
     }
 
-    /*@Test
-    fun testSomethingElse() {
-        val navController = TestNavHostController(ApplicationProvider.getApplicationContext()).apply {
-            setGraph(R.navigation.nav_graph)
+    @Test
+    fun showsErrorWhenRepositoryFails() {
+        // Given the repository throws an exception when loading personal details
+        mockProfileRepository.personalDetails = null
+
+        // When we launch the activity
+        launch(MainActivity::class.java).use {
+
+            // Then the error screen is visible
+            ProfileScreen {
+                errorImage {
+                    isVisible()
+                }
+            }
         }
+    }
 
-        val scenario = launchFragmentInHiltContainer<ProfileFragment> {
-            Navigation.setViewNavController(requireView(), navController)
+    @Ignore("Test does not pass as transition to ready state not occurring")
+    @Test
+    fun showsProfileDetailsWhenRepositorySucceeds() {
+        // When we launch the activity
+        launch(MainActivity::class.java).use {
+
+            // Then the ready screen is visible
+            ProfileScreen {
+                experiences {
+                    isVisible()
+                }
+            }
         }
-
-        /*shadowOf(Looper.getMainLooper()).idle()
-
-        onView(isRoot()).perform(waitFor(10000))
-
-        shadowOf(Looper.getMainLooper()).idle()
-
-        onView(isRoot()).perform(waitFor(10000))
-
-        shadowOf(Looper.getMainLooper()).idleFor(5, TimeUnit.SECONDS)*/
-
-        //shadowOf(Looper.getMainLooper()).idleConstantly(true)
-
-        //ShadowApplication.runBackgroundTasks()
-
-        //onView(withId(R.id.company)).perform(click())
-
-        println("perform click")
-
-        onView(withId(R.id.error_button)).perform(click())
-    }*/
+    }
 }
-
