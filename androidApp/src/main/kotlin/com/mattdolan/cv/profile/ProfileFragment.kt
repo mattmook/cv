@@ -102,6 +102,10 @@ class ProfileFragment : Fragment() {
         lifecycleScope.launch {
             profileViewModel.container.sideEffectFlow.collect(::sideEffect)
         }
+
+        println("onViewCreated complete")
+
+        //println("viewmodel $profileViewModel")
     }
 
     override fun onDestroyView() {
@@ -111,6 +115,8 @@ class ProfileFragment : Fragment() {
     }
 
     private fun render(state: ProfileState) {
+        println("render $state")
+
         when (state) {
             ProfileState.Loading -> {
                 if (binding.mainView.currentState == R.id.error) {

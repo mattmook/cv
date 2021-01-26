@@ -41,7 +41,12 @@ class ProfileViewModel @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel(), ContainerHost<ProfileState, SideEffect> {
 
+    init {
+        println("created viewmodel")
+    }
+
     override val container: Container<ProfileState, SideEffect> = container(ProfileState.Loading, savedStateHandle) {
+        println("init ProfileViewModel")
         if (it !is ProfileState.Ready) loadProfile()
     }
 
