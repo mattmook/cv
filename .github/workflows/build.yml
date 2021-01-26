@@ -38,8 +38,8 @@ jobs:
           path: ~/.gradle/wrapper/dists
           key: ${{ runner.os }}-gradlewrapper
 
-      - name: connectedCheck
-        run: ./gradlew connectedCheck
+      - name: check
+        run: ./gradlew check
 
       - name: Upload test artifacts
         if: failure()
