@@ -16,8 +16,6 @@
 
 package com.mattdolan.cv.profile.model
 
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.mattdolan.cv.common.SideEffect
@@ -26,6 +24,7 @@ import com.mattdolan.cv.domain.PersonalDetails
 import com.mattdolan.cv.domain.ProfileRepository
 import com.mattdolan.cv.domain.Role
 import com.mattdolan.cv.domain.Skill
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
@@ -35,10 +34,12 @@ import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 import org.orbitmvi.orbit.viewmodel.container
+import javax.inject.Inject
 
-class ProfileViewModel @ViewModelInject constructor(
+@HiltViewModel
+class ProfileViewModel @Inject constructor(
     private val profileRepository: ProfileRepository,
-    @Assisted private val savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel(), ContainerHost<ProfileState, SideEffect> {
 
     init {

@@ -92,7 +92,7 @@ class ProfileFragment : Fragment() {
 
         ShadowScrollBehavior(requireContext()).onDependentViewChanged(
             scrollingView = binding.recyclerView,
-            binding.background, binding.image, binding.name, binding.tagline, binding.location, binding.chipGroup
+            binding.background, binding.image, binding.name, binding.tagline, binding.location, binding.chipGroup, binding.pad
         )
 
         lifecycleScope.launch {
@@ -134,7 +134,6 @@ class ProfileFragment : Fragment() {
             }
             is ProfileState.Ready -> {
                 if (binding.mainView.currentState == R.id.loading) {
-                    println("trigger state change ready")
                     binding.mainView.setTransition(R.id.loadingToReady)
                     binding.mainView.transitionToEnd()
                 }
