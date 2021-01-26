@@ -48,6 +48,12 @@ object Versions {
         const val lifecycle = "2.2.0"
         const val navigation = "2.3.2"
         const val vectorDrawable = "1.1.0"
+
+        const val espresso = "3.3.0"
+        const val fragmentTesting = "1.2.5"
+        const val testExtJunit = "1.1.2"
+        const val testRules = "1.3.0"
+        const val testRunner = "1.3.0"
     }
 
     object Google {

@@ -40,6 +40,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.lifecycle}")
     implementation("androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.navigation}")
     implementation("androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.navigation}")
+    testImplementation("androidx.navigation:navigation-testing:${Versions.AndroidX.navigation}")
     implementation("org.orbit-mvi:orbit-viewmodel:${Versions.orbitMvi}")
     testImplementation("org.orbit-mvi:orbit-test:${Versions.orbitMvi}")
 
@@ -71,7 +72,12 @@ dependencies {
 
     // Testing
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}")
-
+    testImplementation("androidx.test.espresso:espresso-core:${Versions.AndroidX.espresso}")
+    testImplementation("androidx.test:runner:${Versions.AndroidX.testRunner}")
+    testImplementation("androidx.test:rules:${Versions.AndroidX.testRules}")
+    testImplementation("androidx.test.ext:junit-ktx:${Versions.AndroidX.testExtJunit}")
+    testImplementation("org.robolectric:robolectric:4.5")
+    debugImplementation("androidx.fragment:fragment-testing:${Versions.AndroidX.fragmentTesting}")
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:${Versions.desugar}")
 }
@@ -110,5 +116,11 @@ android {
 
     sourceSets.all {
         java.srcDir("src/$name/kotlin")
+    }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
     }
 }
