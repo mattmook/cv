@@ -2,17 +2,18 @@
 
 ## Overview
 
-A [Kotlin Multiplatform Mobile](https://kotlinlang.org/lp/mobile/) app with
-list-detail views.
+The project demonstrates a [Kotlin Multiplatform Mobile](https://kotlinlang.org/lp/mobile/)
+app with list-detail views.
 
-Currently only the Android app has been implementd.
+Only the Android app currently functions. I will implement the iOS app later.
 
 ### Setup instructions
 
 Open the project in Android Studio 4.1.2, or execute `./gradlew installDebug`
 from the command line.
 
-Tests and static analysis can be run with `./gradlew check`.
+Run tests and static analysis with `./gradlew check`. Run espresso tests with
+`./gradlew connectedCheck`.
 
 ## Approach
 
@@ -28,20 +29,19 @@ library that I co-authored.
 
 Dependency injection is setup using [Dagger Hilt](https://developer.android.com/training/dependency-injection/hilt-android).
 
-Views are implemented using RecyclerViews and [Groupie](https://github.com/lisawray/groupie)
-to help build reusable shared components that can be configured to match a
-design system.
+Views use RecyclerViews and [Groupie](https://github.com/lisawray/groupie)
+to help build reusable shared components configured to match a design system.
 
 Animations have been implemented through [AnimatedVectorDrawable](https://developer.android.com/guide/topics/graphics/drawable-animation#AnimVector)
 created using [Shape Shifter](https://shapeshifter.design) and [MotionLayout](https://developer.android.com/training/constraint-layout/motionlayout).
 
 ### Testing
 
-Logic in ViewModels is tested using the [Orbit Unit Testing module](https://github.com/orbit-mvi/orbit-mvi/tree/main/orbit-test)
-which allows the interactions to be tested in isolation.
+ViewModels logic tests use the [Orbit Unit Testing module](https://github.com/orbit-mvi/orbit-mvi/tree/main/orbit-test),
+which allows testing the interactions in isolation.
 
-The network layer is tested with an integration test to verify the contract
-with the backend.
+The network layer has an integration test to verify the contract with the
+backend.
 
 ## Future improvements
 
@@ -51,8 +51,8 @@ with the backend.
   for memory leaks, potentially using lifecycle aware components for binding
 
 - Additional testing
-  - Implement Espresso tests with the repository layer mocked. This can be used
-    to verify data is displayed and navigation functions as expected
+  - Improvements to Espresso tests as currently, MotionLayout does not animate
+    correctly. 
   - Implement screenshot/interaction tests once Orbit MVI has support
 
 - Setup CI
@@ -64,9 +64,9 @@ with the backend.
   - Education section
   - Medium blog posts
   - Conference talks
-  - Open source software
+  - Open-source software
 
 - Migrate to [Jetpack Compose](https://developer.android.com/jetpack/compose)
 
-- The app currently doesn't log any data or exceptions. This could be
-  implemented using [Timber](https://github.com/JakeWharton/timber).
+- The app currently doesn't log any data or exceptions, and could potentially
+  use [Timber](https://github.com/JakeWharton/timber).
