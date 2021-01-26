@@ -51,7 +51,7 @@ object Versions {
         const val vectorDrawable = "1.1.0"
 
         const val espresso = "3.3.0"
-        const val fragmentTesting = "1.2.5"
+        const val fragmentTesting = "1.3.0-rc01"
         const val testExtJunit = "1.1.2"
         const val testRules = "1.3.0"
         const val testRunner = "1.3.0"

@@ -16,9 +16,9 @@
 
 package com.mattdolan.cv.profile
 
-import android.os.Build
 import androidx.test.core.app.ActivityScenario.launch
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.kaspersky.kaspresso.testcases.api.testcaserule.TestCaseRule
 import com.mattdolan.cv.MainActivity
 import com.mattdolan.cv.data.MockProfileRepository
 import com.mattdolan.cv.di.RepositoryModule
@@ -26,24 +26,24 @@ import com.mattdolan.cv.domain.ProfileRepository
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import dagger.hilt.android.testing.HiltTestApplication
 import dagger.hilt.android.testing.UninstallModules
 import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.annotation.Config
 
 // This test does not run through the IDE
 // See https://github.com/google/dagger/issues/1956
 @RunWith(AndroidJUnit4::class)
 @UninstallModules(RepositoryModule::class)
 @HiltAndroidTest
-@Config(sdk = [Build.VERSION_CODES.P], application = HiltTestApplication::class)
 class ProfileFragmentTest {
 
     @get:Rule
     val hiltRule = HiltAndroidRule(this)
+
+    @get:Rule
+    val testCaseRule = TestCaseRule(javaClass.name)
 
     private val mockProfileRepository = MockProfileRepository()
 
@@ -52,7 +52,7 @@ class ProfileFragmentTest {
     val profileRepository: ProfileRepository = mockProfileRepository
 
     @Test
-    fun startsInLoadingState() {
+    fun testStartsInLoadingState() {
         // When we launch the activity
         launch(MainActivity::class.java).use {
 
@@ -67,7 +67,7 @@ class ProfileFragmentTest {
     }
 
     @Test
-    fun showsErrorWhenRepositoryFails() {
+    fun testShowsErrorWhenRepositoryFails() {
         // Given the repository throws an exception when loading personal details
         mockProfileRepository.personalDetails = null
 
@@ -85,7 +85,7 @@ class ProfileFragmentTest {
 
     @Ignore("Test does not pass as transition to ready state not occurring")
     @Test
-    fun showsProfileDetailsWhenRepositorySucceeds() {
+    fun testShowsProfileDetailsWhenRepositorySucceeds() {
         // When we launch the activity
         launch(MainActivity::class.java).use {
 
