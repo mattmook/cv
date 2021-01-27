@@ -6,7 +6,7 @@
     android:viewportHeight="184.112"
     tools:ignore="VectorPath">
     <path
-        android:fillColor="#979797"
+        android:fillColor="@color/list_item_connection"
         android:pathData="M92.056,92.056m-92.056,0a92.056,92.056 0,1 1,184.112 0a92.056,92.056 0,1 1,-184.112 0" />
     <path
         android:fillColor="#FFFFFF"

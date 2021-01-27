@@ -19,7 +19,7 @@
         </Constraint>
 
         <!-- content -->
-        <Constraint android:id="@+id/background">
+        <Constraint android:id="@+id/header_background">
             <PropertySet android:visibility="invisible" />
         </Constraint>
         <Constraint android:id="@+id/image">
@@ -72,7 +72,7 @@
         </Constraint>
 
         <!-- content -->
-        <Constraint android:id="@+id/background">
+        <Constraint android:id="@+id/header_background">
             <PropertySet android:visibility="visible" />
         </Constraint>
         <Constraint android:id="@+id/image">

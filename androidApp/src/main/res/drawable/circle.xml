@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
 
-    <solid android:color="#979797" />
+    <solid android:color="@color/list_item_connection" />
     <size
         android:width="12dp"
         android:height="12dp" />
