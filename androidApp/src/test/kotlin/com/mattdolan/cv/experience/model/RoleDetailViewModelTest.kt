@@ -27,7 +27,7 @@ class RoleDetailViewModelTest {
     private val savedStateHandle = SavedStateHandle()
     private val mockProfileRepository = MockProfileRepository()
 
-    private val experience = mockProfileRepository.experiences!![0]
+    private val experience = mockProfileRepository._experiences[0]
     private val role = experience.roles[0]
 
     private val roleDetailViewModel = RoleDetailViewModel(mockProfileRepository, savedStateHandle).apply {
@@ -39,7 +39,7 @@ class RoleDetailViewModelTest {
         // Given an initial state with header and ready details
         val initialState = RoleDetailState(
             header = RoleDetailState.Header(experience.logoUrl, role.title, role.team, role.period),
-            details = RoleDetailState.Details.Ready(mockProfileRepository.roleDetails!!.description)
+            details = RoleDetailState.Details.Ready(mockProfileRepository._roleDetails.description)
         )
 
         // When onCreate called
@@ -54,7 +54,7 @@ class RoleDetailViewModelTest {
         // Given an initial state with no header
         val initialState = RoleDetailState(
             header = null,
-            details = RoleDetailState.Details.Ready(mockProfileRepository.roleDetails!!.description)
+            details = RoleDetailState.Details.Ready(mockProfileRepository._roleDetails.description)
         )
 
         // When onCreate called
@@ -83,7 +83,7 @@ class RoleDetailViewModelTest {
         roleDetailViewModel.assert(initialState) {
             states(
                 { copy(details = RoleDetailState.Details.Loading) },
-                { copy(details = RoleDetailState.Details.Ready(mockProfileRepository.roleDetails!!.description)) }
+                { copy(details = RoleDetailState.Details.Ready(mockProfileRepository._roleDetails.description)) }
             )
         }
     }
@@ -91,7 +91,7 @@ class RoleDetailViewModelTest {
     @Test
     fun `onCreate outputs Loading then Error when roleDetails fails`() {
         // Given role details fails to load
-        mockProfileRepository.roleDetails = null
+        mockProfileRepository.mode = MockProfileRepository.Mode.ThrowException(MockProfileRepository.DataType.RoleDetails)
 
         // And an initial state with details not ready
         val initialState = RoleDetailState(
@@ -126,7 +126,7 @@ class RoleDetailViewModelTest {
         roleDetailViewModel.assert(initialState) {
             states(
                 { copy(details = RoleDetailState.Details.Loading) },
-                { copy(details = RoleDetailState.Details.Ready(mockProfileRepository.roleDetails!!.description)) }
+                { copy(details = RoleDetailState.Details.Ready(mockProfileRepository._roleDetails.description)) }
             )
         }
     }
@@ -134,7 +134,7 @@ class RoleDetailViewModelTest {
     @Test
     fun `loadDetails outputs Loading then Error when roleDetails fails`() {
         // Given role details fails to load
-        mockProfileRepository.roleDetails = null
+        mockProfileRepository.mode = MockProfileRepository.Mode.ThrowException(MockProfileRepository.DataType.RoleDetails)
 
         // And an initial state with details not ready
         val initialState = RoleDetailState(

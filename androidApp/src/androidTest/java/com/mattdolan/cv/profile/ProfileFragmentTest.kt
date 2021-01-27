@@ -16,34 +16,34 @@
 
 package com.mattdolan.cv.profile
 
-import androidx.test.core.app.ActivityScenario.launch
+import androidx.navigation.Navigation
+import androidx.navigation.testing.TestNavHostController
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.kaspersky.kaspresso.testcases.api.testcaserule.TestCaseRule
-import com.mattdolan.cv.MainActivity
+import androidx.test.internal.runner.junit4.statement.UiThreadStatement.runOnUiThread
+import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
+import com.mattdolan.cv.androidApp.R
 import com.mattdolan.cv.data.MockProfileRepository
 import com.mattdolan.cv.di.RepositoryModule
 import com.mattdolan.cv.domain.ProfileRepository
+import com.mattdolan.cv.experience.RoleDetailFragmentArgs
+import com.mattdolan.cv.test.launchFragmentInHiltContainer
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
-import org.junit.Ignore
+import io.kotest.matchers.shouldBe
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-// This test does not run through the IDE
-// See https://github.com/google/dagger/issues/1956
 @RunWith(AndroidJUnit4::class)
 @UninstallModules(RepositoryModule::class)
 @HiltAndroidTest
-class ProfileFragmentTest {
+class ProfileFragmentTest : TestCase() {
 
     @get:Rule
     val hiltRule = HiltAndroidRule(this)
-
-    @get:Rule
-    val testCaseRule = TestCaseRule(javaClass.name)
 
     private val mockProfileRepository = MockProfileRepository()
 
@@ -52,49 +52,105 @@ class ProfileFragmentTest {
     val profileRepository: ProfileRepository = mockProfileRepository
 
     @Test
-    fun testStartsInLoadingState() {
-        // When we launch the activity
-        launch(MainActivity::class.java).use {
+    fun showsErrorWhenRepositoryFails() {
+        // Given the repository throws an exception when loading
+        mockProfileRepository.mode = MockProfileRepository.Mode.ThrowException(MockProfileRepository.DataType.All)
 
-            // Then the loading screen is visible
-            ProfileScreen {
+        // When we launch the fragment
+        launchFragmentInHiltContainer<ProfileFragment>(null, R.style.AppTheme)
 
-                loadingImage {
-                    isVisible()
-                }
+        // Then the error screen is visible
+        ProfileScreen {
+            errorImage {
+                isVisible()
             }
         }
     }
 
     @Test
-    fun testShowsErrorWhenRepositoryFails() {
-        // Given the repository throws an exception when loading personal details
-        mockProfileRepository.personalDetails = null
+    fun showsProfileDetailsWhenRetryClicked() {
+        // Given the repository throws an exception when loading
+        mockProfileRepository.mode = MockProfileRepository.Mode.ThrowException(MockProfileRepository.DataType.All)
 
-        // When we launch the activity
-        launch(MainActivity::class.java).use {
+        // And we launch the fragment in error state
+        launchFragmentInHiltContainer<ProfileFragment>(null, R.style.AppTheme)
+        ProfileScreen {
+            retryButton {
+                isVisible()
+            }
+        }
 
-            // Then the error screen is visible
-            ProfileScreen {
-                errorImage {
-                    isVisible()
-                }
+        // When the repository returns data successfully
+        mockProfileRepository.mode = MockProfileRepository.Mode.ReturnData
+
+        // And we click the retry button
+        ProfileScreen {
+            retryButton {
+                click()
+            }
+        }
+
+        // Then the ready screen is visible
+        ProfileScreen {
+            experiences {
+                isVisible()
             }
         }
     }
 
-    @Ignore("Test does not pass as transition to ready state not occurring")
     @Test
-    fun testShowsProfileDetailsWhenRepositorySucceeds() {
-        // When we launch the activity
-        launch(MainActivity::class.java).use {
+    fun showsProfileDetailsWhenRepositorySucceeds() {
+        // When the repository returns data successfully
+        mockProfileRepository.mode = MockProfileRepository.Mode.ReturnData
 
-            // Then the ready screen is visible
-            ProfileScreen {
-                experiences {
-                    isVisible()
+        // When we launch the fragment
+        launchFragmentInHiltContainer<ProfileFragment>(null, R.style.AppTheme)
+
+        // Then the ready screen is visible
+        ProfileScreen {
+            experiences {
+                isVisible()
+            }
+        }
+    }
+
+    @Test
+    fun navigatesToRoleDetails() {
+        // Given the repository returns data successfully
+        val experience = mockProfileRepository._experiences.random()
+        val role = experience.roles.random()
+        mockProfileRepository.mode = MockProfileRepository.Mode.ReturnData
+
+        // And we launch the fragment
+        val navController = TestNavHostController(ApplicationProvider.getApplicationContext())
+        runOnUiThread {
+            navController.setGraph(R.navigation.nav_graph)
+        }
+        launchFragmentInHiltContainer<ProfileFragment>(null, R.style.AppTheme) {
+            Navigation.setViewNavController(requireView(), navController)
+        }
+
+        // When we click on a role
+        ProfileScreen {
+            experiences {
+                /*scrollTo {
+                    withDescendant { withText(role.title) }
+                }*/
+
+                childWith<ProfileScreen.RoleItem> {
+                    withDescendant { withText(role.title) }
+                }.perform {
+                    click()
                 }
             }
         }
+
+        // Then we navigate to the details screen
+        navController.currentDestination?.id.shouldBe(R.id.roleDetailFragment)
+
+        // And the arguments are as expected
+        val args = RoleDetailFragmentArgs.fromBundle(navController.backStack.last().arguments!!).role
+        args.role.shouldBe(role)
+        args.experience.shouldBe(experience)
     }
 }

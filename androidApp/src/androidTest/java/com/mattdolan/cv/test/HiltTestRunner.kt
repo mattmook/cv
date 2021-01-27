@@ -21,6 +21,8 @@ import android.content.Context
 import androidx.test.runner.AndroidJUnitRunner
 import dagger.hilt.android.testing.HiltTestApplication
 
+// Referenced in build.gradle.kts android.testInstrumentationRunner
+@Suppress("unused")
 class HiltTestRunner : AndroidJUnitRunner() {
     override fun newApplication(classLoader: ClassLoader?, appName: String?, context: Context?): Application {
         println("HiltTestRunner")

@@ -17,9 +17,12 @@
 package com.mattdolan.cv.profile
 
 import android.view.View
+import com.agoda.kakao.common.views.KView
 import com.agoda.kakao.image.KImageView
 import com.agoda.kakao.recycler.KRecyclerItem
 import com.agoda.kakao.recycler.KRecyclerView
+import com.agoda.kakao.text.KButton
+import com.agoda.kakao.text.KTextView
 import com.kaspersky.kaspresso.screens.KScreen
 import com.mattdolan.cv.androidApp.R
 import org.hamcrest.Matcher
@@ -28,9 +31,9 @@ object ProfileScreen : KScreen<ProfileScreen>() {
     override val layoutId: Int = R.layout.profile_fragment
     override val viewClass: Class<*> = ProfileFragment::class.java
 
-    val loadingImage = KImageView { withId(R.id.loading) }
-
     val errorImage = KImageView { withId(R.id.error) }
+
+    val retryButton = KButton { withId(R.id.error_button) }
 
     val experiences: KRecyclerView = KRecyclerView({
         withId(R.id.recycler_view)
@@ -38,5 +41,8 @@ object ProfileScreen : KScreen<ProfileScreen>() {
         itemType(::RoleItem)
     })
 
-    class RoleItem(parent: Matcher<View>) : KRecyclerItem<RoleItem>(parent)
+    class RoleItem(parent: Matcher<View>) : KRecyclerItem<RoleItem>(parent) {
+        val primaryText = KTextView(parent) { withId(R.id.primaryText) }
+        val container = KView(parent) { withId(R.id.container) }
+    }
 }

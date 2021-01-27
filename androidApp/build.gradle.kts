@@ -76,11 +76,14 @@ dependencies {
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}")
     testImplementation("junit:junit:${Versions.junit4}")
     androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.AndroidX.espresso}")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:${Versions.AndroidX.espresso}")
     androidTestImplementation("androidx.test:runner:${Versions.AndroidX.testRunner}")
     androidTestImplementation("androidx.test:rules:${Versions.AndroidX.testRules}")
     androidTestImplementation("androidx.test.ext:junit-ktx:${Versions.AndroidX.testExtJunit}")
     debugImplementation("androidx.fragment:fragment-testing:${Versions.AndroidX.fragmentTesting}")
     androidTestImplementation("com.kaspersky.android-components:kaspresso:${Versions.kaspresso}")
+    testImplementation("io.kotest:kotest-assertions-core:${Versions.kotest}")
+    androidTestImplementation("io.kotest:kotest-assertions-core:${Versions.kotest}")
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:${Versions.desugar}")
 }
@@ -120,6 +123,9 @@ android {
 
     sourceSets.all {
         java.srcDir("src/$name/kotlin")
+        if (name.startsWith("test") || name.startsWith("androidTest")) {
+            java.srcDirs("$rootDir/test-common/src/main/kotlin")
+        }
     }
 
     testOptions {

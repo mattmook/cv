@@ -45,11 +45,13 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.Kotlinx.serialization}")
                 implementation("io.ktor:ktor-client-core:${Versions.ktor}")
                 implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
-                api("com.russhwolf:multiplatform-settings:${Versions.multiplatformSettings}")
+                implementation("com.russhwolf:multiplatform-settings:${Versions.multiplatformSettings}")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.Kotlinx.dateTime}")
             }
         }
         val commonTest by getting {
+            kotlin.srcDirs("$rootDir/test-common/src/main/kotlin")
+
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))

@@ -34,4 +34,3 @@ rootProject.name = "CV"
 
 include(":androidApp")
 include(":shared")
-
