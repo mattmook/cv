@@ -172,6 +172,7 @@ class ProfileFragment : Fragment() {
         experiencesSection.update(experiences.flatMapIndexed { companyIndex, experience ->
             listOf(
                 TwoLineWithIconAndMetaTextItem(
+                    coroutineScope = lifecycleScope,
                     context = requireContext(),
                     imageLoader = imageLoader,
                     supportingVisual = IconValue(experience.logoUrl, R.drawable.ic_company_placeholder),

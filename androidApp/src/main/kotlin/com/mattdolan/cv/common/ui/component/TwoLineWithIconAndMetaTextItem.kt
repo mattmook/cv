@@ -24,10 +24,11 @@ import com.mattdolan.cv.androidApp.R
 import com.mattdolan.cv.androidApp.databinding.TwoLineWithIconAndMetaTextItemBinding
 import com.mattdolan.cv.common.ui.component.input.IconValue
 import com.xwray.groupie.viewbinding.BindableItem
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 data class TwoLineWithIconAndMetaTextItem(
+    val coroutineScope: CoroutineScope,
     val context: Context,
     val imageLoader: ImageLoader,
     val supportingVisual: IconValue,
@@ -50,7 +51,7 @@ data class TwoLineWithIconAndMetaTextItem(
         viewBinding.topLine.visibility = if (topLine) View.VISIBLE else View.GONE
         viewBinding.bottomLine.visibility = if (bottomLine) View.VISIBLE else View.GONE
 
-        GlobalScope.launch {
+        coroutineScope.launch {
             imageLoader.execute(
                 ImageRequest.Builder(context).data(supportingVisual.imageUrl).placeholder(supportingVisual.placeholder).target(viewBinding.icon)
                     .build()
