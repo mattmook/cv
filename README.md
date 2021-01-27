@@ -51,8 +51,6 @@ backend.
   for memory leaks, potentially using lifecycle aware components for binding
 
 - Additional testing
-  - Improvements to Espresso tests as currently, MotionLayout does not animate
-    correctly.
   - Implement screenshot/interaction tests once Orbit MVI has support
 
 - Setup CI
