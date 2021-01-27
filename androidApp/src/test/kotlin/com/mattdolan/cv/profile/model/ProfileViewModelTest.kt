@@ -48,9 +48,9 @@ class ProfileViewModelTest {
                 { ProfileState.Loading },
                 {
                     ProfileState.Ready(
-                        personalDetails = mockProfileRepository.personalDetails!!,
-                        skills = mockProfileRepository.skills!!,
-                        experiences = mockProfileRepository.experiences!!
+                        personalDetails = mockProfileRepository._personalDetails,
+                        skills = mockProfileRepository._skills,
+                        experiences = mockProfileRepository._experiences
                     )
                 }
             )
@@ -60,7 +60,7 @@ class ProfileViewModelTest {
     @Test
     fun `onCreate outputs Loading then Error when personalDetails fails`() {
         // Given personal details fails to load
-        mockProfileRepository.personalDetails = null
+        mockProfileRepository.mode = MockProfileRepository.Mode.ThrowException(MockProfileRepository.DataType.PersonalDetails)
 
         // When onCreate called
         profileViewModel.test(initialState = ProfileState.Error, runOnCreate = true)
@@ -77,7 +77,7 @@ class ProfileViewModelTest {
     @Test
     fun `onCreate outputs Loading then Error when experiences fails`() {
         // Given experiences fails to load
-        mockProfileRepository.experiences = null
+        mockProfileRepository.mode = MockProfileRepository.Mode.ThrowException(MockProfileRepository.DataType.Experience)
 
         // When onCreate called
         profileViewModel.test(initialState = ProfileState.Error, runOnCreate = true)
@@ -94,7 +94,7 @@ class ProfileViewModelTest {
     @Test
     fun `onCreate outputs Loading then Error when skills fails`() {
         // Given skills fails to load
-        mockProfileRepository.skills = null
+        mockProfileRepository.mode = MockProfileRepository.Mode.ThrowException(MockProfileRepository.DataType.Skill)
 
         // When onCreate called
         profileViewModel.test(initialState = ProfileState.Error, runOnCreate = true)
@@ -138,9 +138,9 @@ class ProfileViewModelTest {
                 { ProfileState.Loading },
                 {
                     ProfileState.Ready(
-                        personalDetails = mockProfileRepository.personalDetails!!,
-                        skills = mockProfileRepository.skills!!,
-                        experiences = mockProfileRepository.experiences!!
+                        personalDetails = mockProfileRepository._personalDetails,
+                        skills = mockProfileRepository._skills,
+                        experiences = mockProfileRepository._experiences
                     )
                 }
             )
@@ -150,7 +150,7 @@ class ProfileViewModelTest {
     @Test
     fun `loadProfile outputs Loading then Error when personalDetails fails`() {
         // Given personal details fails to load
-        mockProfileRepository.personalDetails = null
+        mockProfileRepository.mode = MockProfileRepository.Mode.ThrowException(MockProfileRepository.DataType.PersonalDetails)
 
         // When we load profile
         profileViewModel.test(initialState = ProfileState.Error)
@@ -168,7 +168,7 @@ class ProfileViewModelTest {
     @Test
     fun `loadProfile outputs Loading then Error when experiences fails`() {
         // Given experiences fails to load
-        mockProfileRepository.experiences = null
+        mockProfileRepository.mode = MockProfileRepository.Mode.ThrowException(MockProfileRepository.DataType.Experience)
 
         // When we load profile
         profileViewModel.test(initialState = ProfileState.Error)
@@ -186,7 +186,7 @@ class ProfileViewModelTest {
     @Test
     fun `loadProfile outputs Loading then Error when skills fails`() {
         // Given skills fails to load
-        mockProfileRepository.skills = null
+        mockProfileRepository.mode = MockProfileRepository.Mode.ThrowException(MockProfileRepository.DataType.Skill)
 
         // When we load profile
         profileViewModel.test(initialState = ProfileState.Error)
