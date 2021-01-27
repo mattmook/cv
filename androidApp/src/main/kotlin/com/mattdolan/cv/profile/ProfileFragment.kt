@@ -20,6 +20,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -75,7 +76,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        motionLayoutSavedStateViewModel.bind(binding.mainView)
+        motionLayoutSavedStateViewModel.bind(binding.motionLayout)
 
         binding.errorButton.setOnClickListener {
             profileViewModel.loadProfile()
@@ -112,28 +113,13 @@ class ProfileFragment : Fragment() {
     }
 
     private fun render(state: ProfileState) {
-        when (state) {
-            ProfileState.Loading -> {
-                if (binding.mainView.currentState != R.id.loading) {
-                    binding.mainView.setTransition(R.id.loadingToError)
-                    binding.mainView.transitionToStart()
-                }
-            }
-            ProfileState.Error -> {
-                if (binding.mainView.currentState != R.id.error) {
-                    binding.mainView.setTransition(R.id.loadingToError)
-                    binding.mainView.transitionToEnd()
-                }
-            }
-            is ProfileState.Ready -> {
-                if (binding.mainView.currentState != R.id.ready && binding.mainView.currentState != R.id.readyCollapsed) {
-                    binding.mainView.setTransition(R.id.loadingToReady)
-                    binding.mainView.transitionToEnd()
-                }
+        binding.errorGroup.isVisible = state is ProfileState.Error
+        binding.loading.isVisible = state is ProfileState.Loading
+        binding.motionLayout.isVisible = state is ProfileState.Ready
 
-                renderPersonalDetails(state.personalDetails, state.skills)
-                renderExperiences(state.experiences)
-            }
+        if (state is ProfileState.Ready) {
+            renderPersonalDetails(state.personalDetails, state.skills)
+            renderExperiences(state.experiences)
         }
     }
 
