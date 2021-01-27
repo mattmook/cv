@@ -19,39 +19,40 @@ package com.mattdolan.cv.common.ui.component
 import android.content.Context
 import android.view.View
 import coil.ImageLoader
-import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.mattdolan.cv.androidApp.R
-import com.mattdolan.cv.androidApp.databinding.CompanyItemBinding
-import com.mattdolan.cv.domain.Experience
+import com.mattdolan.cv.androidApp.databinding.TwoLineWithIconAndMetaTextItemBinding
+import com.mattdolan.cv.common.ui.component.input.IconValue
 import com.xwray.groupie.viewbinding.BindableItem
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-data class CompanyItem(val context: Context, val experience: Experience, val topLine: Boolean, val bottomLine: Boolean) :
-    BindableItem<CompanyItemBinding>() {
+data class TwoLineWithIconAndMetaTextItem(
+    val context: Context,
+    val imageLoader: ImageLoader,
+    val supportingVisual: IconValue,
+    val primaryText: String,
+    val secondaryText: String,
+    val metadata: String,
+    val topLine: Boolean,
+    val bottomLine: Boolean
+) : BindableItem<TwoLineWithIconAndMetaTextItemBinding>() {
 
-    private val imageLoader = ImageLoader.Builder(context)
-        .componentRegistry {
-            add(SvgDecoder(context))
-        }
-        .build()
+    override fun initializeViewBinding(view: View) = TwoLineWithIconAndMetaTextItemBinding.bind(view)
 
-    override fun initializeViewBinding(view: View) = CompanyItemBinding.bind(view)
+    override fun getLayout() = R.layout.two_line_with_icon_and_meta_text_item
 
-    override fun getLayout() = R.layout.company_item
-
-    override fun bind(viewBinding: CompanyItemBinding, position: Int) {
-        viewBinding.company.text = experience.company
-        viewBinding.industry.text = context.getString(R.string.industry, experience.industry, experience.location)
-        viewBinding.range.text = experience.period
+    override fun bind(viewBinding: TwoLineWithIconAndMetaTextItemBinding, position: Int) {
+        viewBinding.primaryText.text = primaryText
+        viewBinding.secondaryText.text = secondaryText
+        viewBinding.metadata.text = metadata
 
         viewBinding.topLine.visibility = if (topLine) View.VISIBLE else View.GONE
         viewBinding.bottomLine.visibility = if (bottomLine) View.VISIBLE else View.GONE
 
         GlobalScope.launch {
             imageLoader.execute(
-                ImageRequest.Builder(context).data(experience.logoUrl).placeholder(R.drawable.ic_company_placeholder).target(viewBinding.icon)
+                ImageRequest.Builder(context).data(supportingVisual.imageUrl).placeholder(supportingVisual.placeholder).target(viewBinding.icon)
                     .build()
             )
         }

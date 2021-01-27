@@ -18,37 +18,37 @@ package com.mattdolan.cv.common.ui.component
 
 import android.view.View
 import com.mattdolan.cv.androidApp.R
-import com.mattdolan.cv.androidApp.databinding.RoleItemBinding
-import com.mattdolan.cv.domain.Role
+import com.mattdolan.cv.androidApp.databinding.TwoLineWithMetaTextItemBinding
 import com.xwray.groupie.viewbinding.BindableItem
 
-data class RoleItem(
-    val role: Role,
+data class TwoLineWithMetaTextItem(
+    val primaryText: String,
+    val secondaryText: String?,
+    val metadata: String,
     val topLine: Boolean,
     val bottomLine: Boolean,
     val clickListener: () -> Unit = emptyListener
-) : BindableItem<RoleItemBinding>() {
+) : BindableItem<TwoLineWithMetaTextItemBinding>() {
 
-    override fun initializeViewBinding(view: View) = RoleItemBinding.bind(view)
+    override fun initializeViewBinding(view: View) = TwoLineWithMetaTextItemBinding.bind(view)
 
-    override fun getLayout() = R.layout.role_item
+    override fun getLayout() = R.layout.two_line_with_meta_text_item
 
-    override fun bind(viewBinding: RoleItemBinding, position: Int) {
-        viewBinding.role.text = role.title
-        viewBinding.team.apply {
-            text = role.team
-            visibility = if (role.team.isNullOrBlank()) View.GONE else View.VISIBLE
+    override fun bind(viewBinding: TwoLineWithMetaTextItemBinding, position: Int) {
+        viewBinding.primaryText.text = primaryText
+        viewBinding.secondaryText.apply {
+            text = secondaryText
+            visibility = if (secondaryText.isNullOrBlank()) View.GONE else View.VISIBLE
         }
-        viewBinding.range.text = role.period
-
+        viewBinding.metadata.text = metadata
         viewBinding.topLine.visibility = if (topLine) View.VISIBLE else View.GONE
         viewBinding.bottomLine.visibility = if (bottomLine) View.VISIBLE else View.GONE
 
-        viewBinding.item.setOnClickListener {
+        viewBinding.container.setOnClickListener {
             clickListener()
         }
         if (clickListener == emptyListener) {
-            viewBinding.item.isClickable = false
+            viewBinding.container.isClickable = false
         }
     }
 

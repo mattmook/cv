@@ -36,8 +36,9 @@ import com.mattdolan.cv.common.SideEffect
 import com.mattdolan.cv.common.ui.MotionLayoutSavedStateViewModel
 import com.mattdolan.cv.common.ui.ShadowScrollBehavior
 import com.mattdolan.cv.common.ui.animate
-import com.mattdolan.cv.common.ui.component.CompanyItem
-import com.mattdolan.cv.common.ui.component.RoleItem
+import com.mattdolan.cv.common.ui.component.TwoLineWithIconAndMetaTextItem
+import com.mattdolan.cv.common.ui.component.TwoLineWithMetaTextItem
+import com.mattdolan.cv.common.ui.component.input.IconValue
 import com.mattdolan.cv.domain.Experience
 import com.mattdolan.cv.domain.PersonalDetails
 import com.mattdolan.cv.domain.Skill
@@ -170,15 +171,21 @@ class ProfileFragment : Fragment() {
     private fun renderExperiences(experiences: List<Experience>) {
         experiencesSection.update(experiences.flatMapIndexed { companyIndex, experience ->
             listOf(
-                CompanyItem(
+                TwoLineWithIconAndMetaTextItem(
                     context = requireContext(),
-                    experience = experience,
+                    imageLoader = imageLoader,
+                    supportingVisual = IconValue(experience.logoUrl, R.drawable.ic_company_placeholder),
+                    primaryText = experience.company,
+                    secondaryText = requireContext().getString(R.string.industry, experience.industry, experience.location),
+                    metadata = experience.period,
                     topLine = companyIndex != 0,
                     bottomLine = true
                 )
             ) + experience.roles.mapIndexed { roleIndex, role ->
-                RoleItem(
-                    role = role,
+                TwoLineWithMetaTextItem(
+                    primaryText = role.title,
+                    secondaryText = role.team,
+                    metadata = role.period,
                     topLine = true,
                     bottomLine = companyIndex != experiences.size - 1 || roleIndex != experience.roles.size - 1
                 ) {

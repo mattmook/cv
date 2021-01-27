@@ -18,18 +18,18 @@ package com.mattdolan.cv.common.ui.component
 
 import android.view.View
 import com.mattdolan.cv.androidApp.R
-import com.mattdolan.cv.androidApp.databinding.TextItemBinding
+import com.mattdolan.cv.androidApp.databinding.SingleLineTextItemBinding
 import com.xwray.groupie.viewbinding.BindableItem
 
-data class TextItem(
-    val text: CharSequence,
-) : BindableItem<TextItemBinding>() {
+data class SingleLineTextItem(
+    val primaryText: CharSequence,
+) : BindableItem<SingleLineTextItemBinding>() {
 
-    override fun initializeViewBinding(view: View) = TextItemBinding.bind(view)
+    override fun initializeViewBinding(view: View) = SingleLineTextItemBinding.bind(view)
 
-    override fun getLayout() = R.layout.text_item
+    override fun getLayout() = R.layout.single_line_text_item
 
-    override fun bind(viewBinding: TextItemBinding, position: Int) {
-        viewBinding.text.text = text
+    override fun bind(viewBinding: SingleLineTextItemBinding, position: Int) {
+        viewBinding.primaryText.text = primaryText
     }
 }

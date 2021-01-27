@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/item"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground">
@@ -39,7 +39,7 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <TextView
-        android:id="@+id/role"
+        android:id="@+id/primaryText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
@@ -48,33 +48,33 @@
         android:fontFamily="@font/roboto_medium"
         android:textColor="@android:color/black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@id/team"
-        app:layout_constraintEnd_toStartOf="@id/range"
+        app:layout_constraintBottom_toTopOf="@id/secondaryText"
+        app:layout_constraintEnd_toStartOf="@id/metadata"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Senior Android Engineer" />
 
     <TextView
-        android:id="@+id/team"
+        android:id="@+id/secondaryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_slab_light"
         android:textColor="@android:color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/bottom"
-        app:layout_constraintStart_toStartOf="@id/role"
-        app:layout_constraintTop_toBottomOf="@id/role"
+        app:layout_constraintStart_toStartOf="@id/primaryText"
+        app:layout_constraintTop_toBottomOf="@id/primaryText"
         tools:text="Android platform team" />
 
     <TextView
-        android:id="@+id/range"
+        android:id="@+id/metadata"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/roboto_medium"
         android:textColor="@android:color/black"
         android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/role"
+        app:layout_constraintBaseline_toBaselineOf="@id/primaryText"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="07/2018 - present" />
 

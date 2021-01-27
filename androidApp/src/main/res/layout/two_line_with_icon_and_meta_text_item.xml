@@ -37,7 +37,7 @@
         tools:src="@drawable/ic_babylon_health" />
 
     <TextView
-        android:id="@+id/company"
+        android:id="@+id/primaryText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -46,12 +46,12 @@
         android:textColor="@android:color/black"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/center"
-        app:layout_constraintEnd_toStartOf="@id/range"
+        app:layout_constraintEnd_toStartOf="@id/metadata"
         app:layout_constraintStart_toEndOf="@id/icon"
         tools:text="Babylon Health" />
 
     <TextView
-        android:id="@+id/industry"
+        android:id="@+id/secondaryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_slab_light"
@@ -59,19 +59,19 @@
         android:textSize="14sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="@id/bottom"
-        app:layout_constraintStart_toStartOf="@id/company"
+        app:layout_constraintStart_toStartOf="@id/primaryText"
         app:layout_constraintTop_toTopOf="@id/center"
         tools:text="Health care • London" />
 
     <TextView
-        android:id="@+id/range"
+        android:id="@+id/metadata"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/roboto"
         android:textColor="@android:color/black"
         android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@id/company"
+        app:layout_constraintBaseline_toBaselineOf="@id/primaryText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="07/2018 - present" />

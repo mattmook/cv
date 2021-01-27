@@ -32,7 +32,7 @@ import com.mattdolan.cv.androidApp.databinding.RoleDetailFragmentBinding
 import com.mattdolan.cv.common.ui.ShadowScrollBehavior
 import com.mattdolan.cv.common.ui.SpaceItemDecoration
 import com.mattdolan.cv.common.ui.animate
-import com.mattdolan.cv.common.ui.component.TextItem
+import com.mattdolan.cv.common.ui.component.SingleLineTextItem
 import com.mattdolan.cv.common.ui.debounce
 import com.mattdolan.cv.common.viewmodel.viewModelsWithArgs
 import com.mattdolan.cv.experience.model.RoleDetailState
@@ -110,7 +110,7 @@ class RoleDetailFragment : Fragment() {
             val bulletSpacing = requireContext().resources.getDimensionPixelSize(R.dimen.bullet_spacing)
 
             state.details.description.map {
-                TextItem(SpannableStringBuilder().append(it, BulletSpan(bulletSpacing), 0))
+                SingleLineTextItem(SpannableStringBuilder().append(it, BulletSpan(bulletSpacing), 0))
             }.let(groupAdapter::update)
         }
 
