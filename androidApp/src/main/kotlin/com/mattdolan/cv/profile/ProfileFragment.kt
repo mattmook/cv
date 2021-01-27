@@ -93,7 +93,7 @@ class ProfileFragment : Fragment() {
 
         ShadowScrollBehavior(requireContext()).onDependentViewChanged(
             scrollingView = binding.recyclerView,
-            binding.background, binding.image, binding.name, binding.tagline, binding.location, binding.chipGroup, binding.pad
+            binding.headerBackground, binding.image, binding.name, binding.tagline, binding.location, binding.chipGroup, binding.pad
         )
 
         lifecycleScope.launch {
