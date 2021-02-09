@@ -15,6 +15,7 @@
  */
 
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("multiplatform")
@@ -123,18 +124,38 @@ android {
     }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> { kotlinOptions.jvmTarget = "1.8" }
+tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString() }
 
-val packForXcode by tasks.creating(Sync::class) {
+val xcFrameworkPath = "$buildDir/xcode-frameworks/${project.name}.xcframework"
+
+tasks.create<Delete>("deleteXcFramework") { delete = setOf(xcFrameworkPath) }
+
+val buildXcFramework by tasks.registering {
+    dependsOn("deleteXcFramework")
     group = "build"
-    val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
-    val sdkName = System.getenv("SDK_NAME") ?: "iphonesimulator"
-    val targetName = "ios" + if (sdkName.startsWith("iphoneos")) "Arm64" else "X64"
-    val framework = kotlin.targets.getByName<KotlinNativeTarget>(targetName).binaries.getFramework(mode)
+    val mode = "Release"
+    val frameworks = arrayOf("iosArm64", "iosX64")
+        .map { kotlin.targets.getByName<KotlinNativeTarget>(it).binaries.getFramework(mode) }
     inputs.property("mode", mode)
-    dependsOn(framework.linkTask)
-    val targetDir = File(buildDir, "xcode-frameworks")
-    from({ framework.outputDirectory })
-    into(targetDir)
+    dependsOn(frameworks.map { it.linkTask })
+    doLast { buildXcFramework(frameworks) }
 }
-tasks.getByName("build").dependsOn(packForXcode)
+
+fun Task.buildXcFramework(frameworks: List<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>) {
+    val buildArgs: () -> List<String> = {
+        val arguments = mutableListOf("-create-xcframework")
+        frameworks.forEach {
+            arguments += "-framework"
+            arguments += "${it.outputDirectory}/${project.name}.framework"
+        }
+        arguments += "-output"
+        arguments += xcFrameworkPath
+        arguments
+    }
+    exec {
+        executable = "xcodebuild"
+        args = buildArgs()
+    }
+}
+
+tasks.getByName("build").dependsOn(buildXcFramework)
