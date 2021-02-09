@@ -35,6 +35,7 @@ class CvNetworkDataSourceImplTest {
     private val networkDataSource = CvNetworkDataSourceImpl()
 
     // iOS throwing "The certificate for this server is invalid"
+    // See https://youtrack.jetbrains.com/issue/KT-38317
     @IgnoreIos
     @Test
     fun hasAtLeastOneExperience() {
@@ -48,6 +49,7 @@ class CvNetworkDataSourceImplTest {
     }
 
     // iOS throwing "The certificate for this server is invalid"
+    // See https://youtrack.jetbrains.com/issue/KT-38317
     @IgnoreIos
     @Test
     fun allExperiencesHaveData() {
@@ -68,6 +70,7 @@ class CvNetworkDataSourceImplTest {
     }
 
     // iOS throwing "The certificate for this server is invalid"
+    // See https://youtrack.jetbrains.com/issue/KT-38317
     @IgnoreIos
     @Test
     fun allExperiencesLogosExist() {
@@ -85,6 +88,7 @@ class CvNetworkDataSourceImplTest {
     }
 
     // iOS throwing "The certificate for this server is invalid"
+    // See https://youtrack.jetbrains.com/issue/KT-38317
     @IgnoreIos
     @Test
     fun allRolesHaveData() {
@@ -103,6 +107,7 @@ class CvNetworkDataSourceImplTest {
     }
 
     // iOS throwing "The certificate for this server is invalid"
+    // See https://youtrack.jetbrains.com/issue/KT-38317
     @IgnoreIos
     @Test
     fun allRoleDetailsHaveData() {
@@ -124,6 +129,7 @@ class CvNetworkDataSourceImplTest {
     }
 
     // iOS throwing "The certificate for this server is invalid"
+    // See https://youtrack.jetbrains.com/issue/KT-38317
     @IgnoreIos
     @Test
     fun hasAtLeastOneSkill() {
@@ -137,6 +143,7 @@ class CvNetworkDataSourceImplTest {
     }
 
     // iOS throwing "The certificate for this server is invalid"
+    // See https://youtrack.jetbrains.com/issue/KT-38317
     @IgnoreIos
     @Test
     fun allSkillsHaveData() {
@@ -153,6 +160,7 @@ class CvNetworkDataSourceImplTest {
     }
 
     // iOS throwing "The certificate for this server is invalid"
+    // See https://youtrack.jetbrains.com/issue/KT-38317
     @IgnoreIos
     @Test
     fun hasPersonalDetails() {
@@ -169,6 +177,7 @@ class CvNetworkDataSourceImplTest {
     }
 
     // iOS throwing "The certificate for this server is invalid"
+    // See https://youtrack.jetbrains.com/issue/KT-38317
     @IgnoreIos
     @Test
     fun personalDetailsAvatarExists() {
