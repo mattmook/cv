@@ -19,9 +19,7 @@ package com.mattdolan.cv.experience
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.style.BulletSpan
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -34,6 +32,7 @@ import com.mattdolan.cv.common.ui.SpaceItemDecoration
 import com.mattdolan.cv.common.ui.animate
 import com.mattdolan.cv.common.ui.component.SingleLineTextItem
 import com.mattdolan.cv.common.ui.debounce
+import com.mattdolan.cv.common.viewBinding
 import com.mattdolan.cv.common.viewmodel.viewModelsWithArgs
 import com.mattdolan.cv.experience.model.RoleDetailState
 import com.mattdolan.cv.experience.model.RoleDetailViewModel
@@ -43,7 +42,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class RoleDetailFragment : Fragment() {
+class RoleDetailFragment : Fragment(R.layout.role_detail_fragment) {
 
     private val viewModel by viewModelsWithArgs<RoleDetailViewModel, RoleDetailFragmentArgs, RoleDetailArguments> {
         it.role
@@ -51,10 +50,7 @@ class RoleDetailFragment : Fragment() {
 
     private val groupAdapter = GroupAdapter<GroupieViewHolder>()
 
-    private lateinit var binding: RoleDetailFragmentBinding
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
-        RoleDetailFragmentBinding.inflate(inflater, container, false).also { binding = it }.root
+    private val binding by viewBinding<RoleDetailFragmentBinding>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -78,12 +74,6 @@ class RoleDetailFragment : Fragment() {
         lifecycleScope.launchWhenCreated {
             viewModel.container.stateFlow.collect(::render)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // Fix memory leak with RecyclerView
-        binding.content.adapter = null
     }
 
     private fun configureToolbar() {

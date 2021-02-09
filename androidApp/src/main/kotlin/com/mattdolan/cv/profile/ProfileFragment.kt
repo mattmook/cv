@@ -17,9 +17,7 @@
 package com.mattdolan.cv.profile
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -40,6 +38,7 @@ import com.mattdolan.cv.common.ui.animate
 import com.mattdolan.cv.common.ui.component.TwoLineWithIconAndMetaTextItem
 import com.mattdolan.cv.common.ui.component.TwoLineWithMetaTextItem
 import com.mattdolan.cv.common.ui.component.input.IconValue
+import com.mattdolan.cv.common.viewBinding
 import com.mattdolan.cv.domain.Experience
 import com.mattdolan.cv.domain.PersonalDetails
 import com.mattdolan.cv.domain.Skill
@@ -56,7 +55,7 @@ import java.time.Year
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
     @Inject
     lateinit var imageLoader: ImageLoader
@@ -68,10 +67,7 @@ class ProfileFragment : Fragment() {
     private val profileSection = Section()
     private val experiencesSection = Section()
 
-    private lateinit var binding: ProfileFragmentBinding
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
-        ProfileFragmentBinding.inflate(inflater, container, false).also { binding = it }.root
+    private val binding by viewBinding<ProfileFragmentBinding>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -104,12 +100,6 @@ class ProfileFragment : Fragment() {
         lifecycleScope.launch {
             profileViewModel.container.sideEffectFlow.collect(::sideEffect)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // Fix memory leak with RecyclerView
-        binding.recyclerView.adapter = null
     }
 
     private fun render(state: ProfileState) {

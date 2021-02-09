@@ -39,7 +39,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val profileRepository: ProfileRepository,
-    private val savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle
 ) : ViewModel(), ContainerHost<ProfileState, SideEffect> {
 
     override val container: Container<ProfileState, SideEffect> = container(ProfileState.Loading, savedStateHandle) {
