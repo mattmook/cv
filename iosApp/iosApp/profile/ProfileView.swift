@@ -29,17 +29,15 @@ struct ProfileView: View {
             switch profileViewModel.state {
             case .Ready (let (personalDetails, experiences, skills)):
                 ScrollView {
-                    Text(personalDetails.name)
-                        .navigationBarHidden(true)
+                    VStack {
+                        Text(personalDetails.name)
+                            .navigationBarHidden(true)
                     
-                    FlexibleView(data: skills, spacing: 8, alignment: .leading) { skill in
-                        Text(skill.title)
-                            .padding(8)
-                            .foregroundColor(Color(hex: 0x555555))
-                            .background(RoundedRectangle(cornerRadius: 16).stroke(Color(hex: 0x555555), lineWidth: 1))
-                            .font(.system(.caption))
-                    }
-                    .padding(.horizontal, 8)
+                        FlexibleView(data: skills, spacing: 4, alignment: .leading) { skill in
+                            ChipView(text: skill.title)
+                        }
+                        .padding(8)
+                    }.background(Color(hex: 0xebebeb))
                     
                     ForEach(0..<experiences.count) { index in
                         Text(experiences[index].company)
