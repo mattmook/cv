@@ -28,19 +28,31 @@ struct ProfileView: View {
             case .Ready (let (personalDetails, experiences, skills)):
                 List {
                     VStack {
-                        Text(personalDetails.name)
-                            .navigationBarHidden(true)
+                        AsyncImage(
+                            url: URL(string: personalDetails.avatarUrl)!,
+                            placeholder: { Text("Loading ...") },
+                            image: { Image(uiImage: $0).resizable() }
+                        )
+                        .frame(width: 128, height: 128)
+                        .clipShape(Circle())
+                        
+                        Text(personalDetails.name).font(.system(.body))
+                        
+                        Text(personalDetails.tagline).font(.system(.caption))
+                        
+                        Text(personalDetails.location).font(.system(.caption))
                         
                         FlexibleView(data: skills, spacing: 4, alignment: .leading) { skill in
                             ChipView(text: skill.title)
                         }
-                        .padding(8)
-                    }.background(Color(hex: 0xebebeb))
+                        
+                    }.padding(16)
+                    .background(Color.systemGroupedBackground)
                     .listRowInsets(EdgeInsets())
                     
                     ForEach(experiences, id: \.hash) { experience in
                         Section(header:
-                            TwoLineWithMetaTextView(primaryText: experience.company, secondaryText: "\(experience.industry) • \(experience.location)", metadata: experience.period)
+                                    TwoLineWithMetaTextView(primaryText: experience.company, secondaryText: "\(experience.industry) • \(experience.location)", metadata: experience.period)
                                     .padding(.vertical, 8)
                         ) {
                             ForEach(experience.roles, id: \.hash) { role in
@@ -49,6 +61,7 @@ struct ProfileView: View {
                         }
                     }
                 }.listStyle(GroupedListStyle())
+                .navigationBarHidden(true)
             case .Error:
                 Text("Error")
                     .navigationBarHidden(true)

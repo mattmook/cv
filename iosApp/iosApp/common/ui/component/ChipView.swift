@@ -22,14 +22,19 @@ struct ChipView: View {
     var body: some View {
         Text(text)
             .padding(4)
-            .foregroundColor(Color(hex: 0x555555))
-            .background(RoundedRectangle(cornerRadius: CGFloat.infinity).stroke(Color(hex: 0x555555)))
+            .foregroundColor(Color.secondary)
+            .background(RoundedRectangle(cornerRadius: CGFloat.infinity).stroke(Color.secondary))
             .font(.system(.caption2))
     }
 }
 
 struct ChipView_Previews: PreviewProvider {
     static var previews: some View {
-        ChipView(text: "Hello world")
+        ForEach(ColorScheme.allCases, id: \.self) {
+            ChipView(text: "Hello world")
+                .preferredColorScheme($0)
+        }
+
+        
     }
 }
