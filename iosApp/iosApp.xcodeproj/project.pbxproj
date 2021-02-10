@@ -11,6 +11,7 @@
 		4493FD4E25D3278400CA6D76 /* shared.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4493FD4C25D3278400CA6D76 /* shared.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4493FD6225D341D600CA6D76 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4493FD6125D341D600CA6D76 /* ProfileView.swift */; };
 		4493FD6825D3447500CA6D76 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4493FD6725D3447500CA6D76 /* ProfileViewModel.swift */; };
+		4493FD7225D3C4B000CA6D76 /* ProfileState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4493FD7125D3C4B000CA6D76 /* ProfileState.swift */; };
 		7555FF7F242A565900829871 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF7E242A565900829871 /* AppDelegate.swift */; };
 		7555FF81242A565900829871 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF80242A565900829871 /* SceneDelegate.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
@@ -57,6 +58,7 @@
 		4493FD4C25D3278400CA6D76 /* shared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = shared.xcframework; path = "../shared/build/xcode-frameworks/shared.xcframework"; sourceTree = "<group>"; };
 		4493FD6125D341D600CA6D76 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		4493FD6725D3447500CA6D76 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		4493FD7125D3C4B000CA6D76 /* ProfileState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileState.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF7E242A565900829871 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7555FF80242A565900829871 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				4493FD6125D341D600CA6D76 /* ProfileView.swift */,
 				4493FD6725D3447500CA6D76 /* ProfileViewModel.swift */,
+				4493FD7125D3C4B000CA6D76 /* ProfileState.swift */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				4493FD6225D341D600CA6D76 /* ProfileView.swift in Sources */,
 				7555FF7F242A565900829871 /* AppDelegate.swift in Sources */,
 				7555FF81242A565900829871 /* SceneDelegate.swift in Sources */,
+				4493FD7225D3C4B000CA6D76 /* ProfileState.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				4493FD6825D3447500CA6D76 /* ProfileViewModel.swift in Sources */,
 			);

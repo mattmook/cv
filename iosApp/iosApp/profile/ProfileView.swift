@@ -21,11 +21,28 @@ import shared
 struct ProfileView: View {
     
     @StateObject private var profileViewModel = ProfileViewModel()
-        
+    
     var body: some View {
         NavigationView {
-            Text(profileViewModel.name)
-                .navigationBarHidden(true)
+            switch profileViewModel.state {
+            case .Ready (let (personalDetails, experiences, skills)):
+                VStack {
+                    Text(personalDetails.name)
+                        .navigationBarHidden(true)
+                    ForEach(0..<skills.count) { index in
+                        Text(skills[index].skill)
+                    }
+                    ForEach(0..<experiences.count) { index in
+                        Text(experiences[index].company)
+                    }
+                }
+            case .Error:
+                Text("Error")
+                    .navigationBarHidden(true)
+            case .Loading:
+                Text("Loading")
+                    .navigationBarHidden(true)
+            }
         }
     }
 }

@@ -20,14 +20,62 @@ import shared
 
 class ProfileViewModel : ObservableObject {
     
-    @Published var name: String = ""
+    @Published var state: ProfileState = .Loading
     
     private let profileRepository = Sdk().profileRepository()
     
     init() {
-        // name:tagline:location:avatarUrl
-        profileRepository.personalDetails { (personalDetails: PersonalDetails_?, _: Error?) in
-            self.name = personalDetails?.name ?? ""
-        }
+        loadProfile()
+    }
+    
+    func loadProfile() {
+        state = .Loading
+        Publishers.CombineLatest3(personalDetails(), experiences(), skills()).map { (personalDetails, experiences, skills) -> ProfileState in
+            .Ready((personalDetails, experiences, skills))
+        }.replaceError(with: .Error)
+        .eraseToAnyPublisher()
+        .assign(to: &$state)
+    }
+    
+    private func personalDetails() -> AnyPublisher<PersonalDetails_, Error> {
+        return Deferred {
+            Future<PersonalDetails_, Error> { promise in
+                self.profileRepository.personalDetails { (personalDetails: PersonalDetails_?, error: Error?) in
+                    if let error = error {
+                        promise(.failure(error))
+                    } else {
+                        promise(.success(personalDetails!))
+                    }
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    private func experiences() -> AnyPublisher<[Experience_], Error> {
+        return Deferred {
+            Future<[Experience_], Error> { promise in
+                self.profileRepository.experiences { (experiences: [Experience_]?, error: Error?) in
+                    if let error = error {
+                        promise(.failure(error))
+                    } else {
+                        promise(.success(experiences!))
+                    }
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
+
+    private func skills() -> AnyPublisher<[Skill_], Error> {
+        return Deferred {
+            Future<[Skill_], Error> { promise in
+                self.profileRepository.skills { (skills: [Skill_]?, error: Error?) in
+                    if let error = error {
+                        promise(.failure(error))
+                    } else {
+                        promise(.success(skills!))
+                    }
+                }
+            }
+        }.eraseToAnyPublisher()
     }
 }
