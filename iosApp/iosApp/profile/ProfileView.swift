@@ -22,27 +22,33 @@ struct ProfileView: View {
     
     @StateObject private var profileViewModel = ProfileViewModel()
     
-    
-    
     var body: some View {
         NavigationView {
             switch profileViewModel.state {
             case .Ready (let (personalDetails, experiences, skills)):
-                ScrollView {
+                List {
                     VStack {
                         Text(personalDetails.name)
                             .navigationBarHidden(true)
-                    
+                        
                         FlexibleView(data: skills, spacing: 4, alignment: .leading) { skill in
                             ChipView(text: skill.title)
                         }
                         .padding(8)
                     }.background(Color(hex: 0xebebeb))
+                    .listRowInsets(EdgeInsets())
                     
-                    ForEach(0..<experiences.count) { index in
-                        Text(experiences[index].company)
+                    ForEach(experiences, id: \.hash) { experience in
+                        Section(header:
+                            TwoLineWithMetaTextView(primaryText: experience.company, secondaryText: "\(experience.industry) • \(experience.location)", metadata: experience.period)
+                                    .padding(.vertical, 8)
+                        ) {
+                            ForEach(experience.roles, id: \.hash) { role in
+                                TwoLineWithMetaTextView(primaryText: role.title, secondaryText: role.team, metadata: role.period)
+                            }
+                        }
                     }
-                }
+                }.listStyle(GroupedListStyle())
             case .Error:
                 Text("Error")
                     .navigationBarHidden(true)
