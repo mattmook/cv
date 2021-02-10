@@ -22,16 +22,25 @@ struct ProfileView: View {
     
     @StateObject private var profileViewModel = ProfileViewModel()
     
+    
+    
     var body: some View {
         NavigationView {
             switch profileViewModel.state {
             case .Ready (let (personalDetails, experiences, skills)):
-                VStack {
+                ScrollView {
                     Text(personalDetails.name)
                         .navigationBarHidden(true)
-                    ForEach(0..<skills.count) { index in
-                        Text(skills[index].skill)
+                    
+                    FlexibleView(data: skills, spacing: 8, alignment: .leading) { skill in
+                        Text(skill.title)
+                            .padding(8)
+                            .foregroundColor(Color(hex: 0x555555))
+                            .background(RoundedRectangle(cornerRadius: 16).stroke(Color(hex: 0x555555), lineWidth: 1))
+                            .font(.system(.caption))
                     }
+                    .padding(.horizontal, 8)
+                    
                     ForEach(0..<experiences.count) { index in
                         Text(experiences[index].company)
                     }
@@ -50,5 +59,18 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
+    }
+}
+
+private let year = Calendar.current.component(.year, from: Date())
+
+private extension Skill_ {
+    
+    var title: String {
+        if let since = since?.intValue {
+            return "\(skill) (\(year - since) yrs)"
+        } else {
+            return skill
+        }
     }
 }
