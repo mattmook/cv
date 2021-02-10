@@ -15,17 +15,23 @@
 //
 
 import SwiftUI
+import Combine
 import shared
 
-struct ContentView: View {
-
+struct ProfileView: View {
+    
+    @StateObject private var profileViewModel = ProfileViewModel()
+        
     var body: some View {
-        ProfileView()
+        NavigationView {
+            Text(profileViewModel.name)
+                .navigationBarHidden(true)
+        }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ProfileView()
     }
 }

@@ -15,17 +15,19 @@
 //
 
 import SwiftUI
+import Combine
 import shared
 
-struct ContentView: View {
-
-    var body: some View {
-        ProfileView()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+class ProfileViewModel : ObservableObject {
+    
+    @Published var name: String = ""
+    
+    private let profileRepository = Sdk().profileRepository()
+    
+    init() {
+        // name:tagline:location:avatarUrl
+        profileRepository.personalDetails { (personalDetails: PersonalDetails_?, _: Error?) in
+            self.name = personalDetails?.name ?? ""
+        }
     }
 }
