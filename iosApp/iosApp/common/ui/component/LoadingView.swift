@@ -18,18 +18,11 @@ import SwiftUI
 
 struct LoadingView: View {
     
-    @State private var play = 0
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-            LottieView(name: colorScheme == .dark ? "cv-failed-dark" : "cv-failed", play: $play)
+            LottieView(name: colorScheme == .dark ? "cv-loading-dark" : "cv-loading")
                 .frame(width:128, height:128)
-                .onAppear(perform: {
-                    play = 1
-                })
-                .onDisappear(perform: {
-                    play = 0
-                })
                 .id(self.colorScheme)
     }
 }

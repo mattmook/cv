@@ -19,7 +19,6 @@ import SwiftUI
 struct ErrorView: View {
     var action: () -> Void
     
-    @State private var play = 0
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -27,7 +26,7 @@ struct ErrorView: View {
             Spacer()
             Text("Sorry, something went wrong").font(.body)
             Spacer()
-            LottieView(name: colorScheme == .dark ? "cv-failed-dark" : "cv-failed", play: $play)
+            LottieView(name: colorScheme == .dark ? "cv-failed-dark" : "cv-failed")
                 .frame(width:128, height:128)
                 .id(self.colorScheme)
             Spacer()

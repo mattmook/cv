@@ -13,6 +13,8 @@
 		442F527225D49AEE00CF3CE6 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F527125D49AEE00CF3CE6 /* ErrorView.swift */; };
 		442F527625D4AA3F00CF3CE6 /* cv-failed-dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 442F527525D4AA3F00CF3CE6 /* cv-failed-dark.json */; };
 		442F527A25D4AE3B00CF3CE6 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F527925D4AE3B00CF3CE6 /* LoadingView.swift */; };
+		442F527E25D4BD0500CF3CE6 /* cv-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 442F527D25D4BD0500CF3CE6 /* cv-loading.json */; };
+		442F528625D5BBBF00CF3CE6 /* cv-loading-dark.json in Resources */ = {isa = PBXBuildFile; fileRef = 442F528525D5BBBF00CF3CE6 /* cv-loading-dark.json */; };
 		4493FD4D25D3278400CA6D76 /* shared.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4493FD4C25D3278400CA6D76 /* shared.xcframework */; };
 		4493FD4E25D3278400CA6D76 /* shared.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4493FD4C25D3278400CA6D76 /* shared.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4493FD6225D341D600CA6D76 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4493FD6125D341D600CA6D76 /* ProfileView.swift */; };
@@ -75,6 +77,8 @@
 		442F527125D49AEE00CF3CE6 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		442F527525D4AA3F00CF3CE6 /* cv-failed-dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "cv-failed-dark.json"; sourceTree = "<group>"; };
 		442F527925D4AE3B00CF3CE6 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		442F527D25D4BD0500CF3CE6 /* cv-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "cv-loading.json"; sourceTree = "<group>"; };
+		442F528525D5BBBF00CF3CE6 /* cv-loading-dark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "cv-loading-dark.json"; sourceTree = "<group>"; };
 		446563EA2538941000A6AB4D /* Accessibility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accessibility.framework; path = System/Library/Frameworks/Accessibility.framework; sourceTree = SDKROOT; };
 		4493FD4C25D3278400CA6D76 /* shared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = shared.xcframework; path = "../shared/build/xcode-frameworks/shared.xcframework"; sourceTree = "<group>"; };
 		4493FD6125D341D600CA6D76 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -138,6 +142,8 @@
 			children = (
 				442F527525D4AA3F00CF3CE6 /* cv-failed-dark.json */,
 				442F526B25D4959900CF3CE6 /* cv-failed.json */,
+				442F528525D5BBBF00CF3CE6 /* cv-loading-dark.json */,
+				442F527D25D4BD0500CF3CE6 /* cv-loading.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -400,8 +406,10 @@
 				442F527625D4AA3F00CF3CE6 /* cv-failed-dark.json in Resources */,
 				7555FF8B242A565B00829871 /* LaunchScreen.storyboard in Resources */,
 				442F526C25D4959900CF3CE6 /* cv-failed.json in Resources */,
+				442F528625D5BBBF00CF3CE6 /* cv-loading-dark.json in Resources */,
 				7555FF88242A565B00829871 /* Preview Assets.xcassets in Resources */,
 				7555FF85242A565B00829871 /* Assets.xcassets in Resources */,
+				442F527E25D4BD0500CF3CE6 /* cv-loading.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

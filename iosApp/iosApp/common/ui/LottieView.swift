@@ -8,7 +8,6 @@ struct LottieView: UIViewRepresentable {
     }
     
     var name: String!
-    @Binding var play:Int
     
     var animationView = AnimationView()
 
@@ -27,6 +26,8 @@ struct LottieView: UIViewRepresentable {
         animationView.animation = Animation.named(name)
         animationView.contentMode = .scaleAspectFit
         animationView.translatesAutoresizingMaskIntoConstraints = false
+        animationView.loopMode = .loop
+        animationView.backgroundBehavior = .pauseAndRestore
         view.addSubview(animationView)
 
         NSLayoutConstraint.activate([
