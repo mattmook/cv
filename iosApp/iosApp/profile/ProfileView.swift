@@ -21,6 +21,7 @@ import shared
 struct ProfileView: View {
     
     @StateObject private var profileViewModel = ProfileViewModel()
+    @State var play = 0
     
     var body: some View {
         NavigationView {
@@ -63,10 +64,11 @@ struct ProfileView: View {
                 }.listStyle(GroupedListStyle())
                 .navigationBarHidden(true)
             case .Error:
-                Text("Error")
-                    .navigationBarHidden(true)
+                ErrorView {
+                    profileViewModel.loadProfile()
+                }.navigationBarHidden(true)
             case .Loading:
-                Text("Loading")
+                LoadingView()
                     .navigationBarHidden(true)
             }
         }
