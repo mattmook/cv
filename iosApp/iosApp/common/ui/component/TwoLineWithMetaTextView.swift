@@ -20,18 +20,28 @@ struct TwoLineWithMetaTextView: View {
     var primaryText: String
     var secondaryText: String?
     var metadata: String
+    var action: (() -> Any)? = nil
     
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack(alignment: .firstTextBaseline, spacing: nil) {
-                Text(primaryText).foregroundColor(Color.primary).font(.system(.body))
-                Spacer()
-                Text(metadata).foregroundColor(Color.primary).font(.system(.caption))
+        HStack {
+            VStack(alignment: .leading) {
+                HStack(alignment: .firstTextBaseline) {
+                    Text(primaryText).foregroundColor(Color.primary).font(.system(.body))
+                    Spacer()
+                    Text(metadata).foregroundColor(Color.primary).font(.system(.caption))
+                }
+                if let secondaryText = secondaryText {
+                    Text(secondaryText).foregroundColor(Color.secondary).font(.system(.caption))
+                }
             }
-            if let secondaryText = secondaryText {
-                Text(secondaryText).foregroundColor(Color.secondary).font(.system(.caption))
+            if action != nil {
+                Image(systemName: "chevron.right")
+                    .foregroundColor(Color.tertiaryLabel)
+                    .padding(.leading, 8)
             }
-        }
+        }.frame(minHeight: 28) // 28 + 8 + 8 = 44
+        .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+        
     }
 }
 

@@ -27,41 +27,37 @@ struct ProfileView: View {
         NavigationView {
             switch profileViewModel.state {
             case .Ready (let (personalDetails, experiences, skills)):
-                List {
-                    VStack {
-                        AsyncImage(
-                            url: URL(string: personalDetails.avatarUrl)!,
-                            placeholder: { Text("Loading ...") },
-                            image: { Image(uiImage: $0).resizable() }
-                        )
-                        .frame(width: 128, height: 128)
-                        .clipShape(Circle())
-                        
-                        Text(personalDetails.name).font(.system(.body))
-                        
-                        Text(personalDetails.tagline).font(.system(.caption))
-                        
-                        Text(personalDetails.location).font(.system(.caption))
+                ScrollView {
+                    VStack(spacing: 0) {
+                        PersonalDetailsView(personalDetails: personalDetails)
+                            .padding(16)
                         
                         FlexibleView(data: skills, spacing: 4, alignment: .leading) { skill in
                             ChipView(text: skill.title)
-                        }
+                        }.padding(16)
                         
-                    }.padding(16)
-                    .background(Color.systemGroupedBackground)
-                    .listRowInsets(EdgeInsets())
-                    
-                    ForEach(experiences, id: \.hash) { experience in
-                        Section(header:
-                                    TwoLineWithMetaTextView(primaryText: experience.company, secondaryText: "\(experience.industry) • \(experience.location)", metadata: experience.period)
-                                    .padding(.vertical, 8)
-                        ) {
-                            ForEach(experience.roles, id: \.hash) { role in
-                                TwoLineWithMetaTextView(primaryText: role.title, secondaryText: role.team, metadata: role.period)
+                        ForEach(experiences, id: \.hash) { experience in
+                            TwoLineWithMetaTextView(primaryText: experience.company, secondaryText: "\(experience.industry) • \(experience.location)", metadata: experience.period)
+                                .padding(.top, 16)
+
+                            Divider().padding(EdgeInsets())
+                            
+                            ForEach(experience.roles.indices) { index in
+                                let role = experience.roles[index]
+                                
+                                if (index != 0) {
+                                    Divider().padding(.leading, 16).background(Color.secondarySystemGroupedBackground)
+                                }
+                                
+                                TwoLineWithMetaTextView(primaryText: role.title, secondaryText: role.team, metadata: role.period) {
+                                    // navigate here
+                                }
+                                .background(Color.secondarySystemGroupedBackground)
                             }
+                            Divider().padding(EdgeInsets())
                         }
                     }
-                }.listStyle(GroupedListStyle())
+                }.background(Color.systemGroupedBackground)
                 .navigationBarHidden(true)
             case .Error:
                 ErrorView {
