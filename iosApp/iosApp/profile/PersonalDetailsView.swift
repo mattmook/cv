@@ -35,7 +35,7 @@ struct PersonalDetailsView: View {
             Text(personalDetails.tagline).font(.system(.caption))
             
             Text(personalDetails.location).font(.system(.caption))
-        }
+        }.padding(.horizontal, 16)
     }
 }
 

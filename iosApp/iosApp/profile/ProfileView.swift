@@ -29,32 +29,12 @@ struct ProfileView: View {
                 ScrollView {
                     VStack(spacing: 0) {
                         PersonalDetailsView(personalDetails: personalDetails)
-                            .padding(16)
+                            .padding(.vertical, 16)
                         
-                        FlexibleView(data: skills, spacing: 4, alignment: .leading) { skill in
-                            ChipView(text: skill.title)
-                        }.padding(16)
+                        SkillsView(skills: skills)
+                            .padding(.vertical, 16)
                         
-                        ForEach(experiences, id: \.hash) { experience in
-                            TwoLineWithMetaTextView(primaryText: experience.company, secondaryText: "\(experience.industry) • \(experience.location)", metadata: experience.period)
-                                .padding(.top, 16)
-
-                            Divider().padding(EdgeInsets())
-                            
-                            ForEach(experience.roles.indices) { index in
-                                let role = experience.roles[index]
-                                
-                                if (index != 0) {
-                                    Divider().padding(.leading, 16).background(Color.secondarySystemGroupedBackground)
-                                }
-                                
-                                TwoLineWithMetaTextView(primaryText: role.title, secondaryText: role.team, metadata: role.period) {
-                                    // navigate here
-                                }
-                                .background(Color.secondarySystemGroupedBackground)
-                            }
-                            Divider().padding(EdgeInsets())
-                        }
+                        ExperiencesView(experiences: experiences)
                     }
                 }.background(Color.systemGroupedBackground)
                 .navigationBarHidden(true)
@@ -73,18 +53,5 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
-    }
-}
-
-private let year = Calendar.current.component(.year, from: Date())
-
-private extension Skill_ {
-    
-    var title: String {
-        if let since = since?.intValue {
-            return "\(skill) (\(year - since) yrs)"
-        } else {
-            return skill
-        }
     }
 }
