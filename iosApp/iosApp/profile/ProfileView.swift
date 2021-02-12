@@ -21,7 +21,6 @@ import shared
 struct ProfileView: View {
     
     @StateObject private var profileViewModel = ProfileViewModel()
-    @State var play = 0
     
     var body: some View {
         NavigationView {
