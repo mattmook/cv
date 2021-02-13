@@ -23,7 +23,10 @@ struct ExperiencesView: View {
     var body: some View {
         VStack(spacing: 0) {
             ForEach(experiences, id: \.hash) { experience in
-                TwoLineWithMetaTextView(primaryText: experience.company, secondaryText: "\(experience.industry) • \(experience.location)", metadata: experience.period)
+                
+                let logoUrlPdf = experience.logoUrl.replacingOccurrences(of:".svg", with: ".pdf")
+                
+                TwoLineWithMetaTextView(primaryText: experience.company, secondaryText: "\(experience.industry) • \(experience.location)", imageUrl: URL(string: logoUrlPdf))
                     .padding(.top, 16)
                 
                 Divider()
@@ -53,7 +56,7 @@ struct ExperiencesView_Previews: PreviewProvider {
                 experiences: [
                     Experience_(
                         company: "Babylon Health",
-                        logoUrl: "",
+                        logoUrl: "https://mattdolan.com/cv/company-logo/ig.svg",
                         industry: "Health care",
                         location: "London",
                         period: "07/2018 - present",
@@ -77,7 +80,7 @@ struct ExperiencesView_Previews: PreviewProvider {
                     ),
                     Experience_(
                         company: "Babylon Health",
-                        logoUrl: "",
+                        logoUrl: "https://mattdolan.com/cv/company-logo/ig.svg",
                         industry: "Health care",
                         location: "London",
                         period: "07/2018 - present",
@@ -89,7 +92,7 @@ struct ExperiencesView_Previews: PreviewProvider {
                                 detailUrl: "")
                         ]
                     )
-
+                    
                 ]
             )
             .preferredColorScheme($0)

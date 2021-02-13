@@ -15,21 +15,37 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct TwoLineWithMetaTextView: View {
     var primaryText: String
     var secondaryText: String?
-    var metadata: String
+    var metadata: String? = nil
+    var imageUrl: URL? = nil
     var action: (() -> Any)? = nil
     
     var body: some View {
-        HStack {
+        HStack(spacing:0) {
+            
+            if imageUrl != nil {
+                AnimatedImage(url: imageUrl)
+                    .resizable()
+                    .frame(width: 32, height: 32)
+                    .padding(.trailing, 8)
+            }
+            
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline) {
                     Text(primaryText).foregroundColor(Color.primary).font(.system(.body))
+                        .fixedSize(horizontal: false, vertical: true)
+                    
                     Spacer()
-                    Text(metadata).foregroundColor(Color.primary).font(.system(.caption))
+                    
+                    if (metadata != nil) {
+                        Text(metadata!).foregroundColor(Color.primary).font(.system(.caption))
+                    }
                 }
+                
                 if let secondaryText = secondaryText {
                     Text(secondaryText).foregroundColor(Color.secondary).font(.system(.caption))
                 }
