@@ -28,6 +28,7 @@ struct ExperiencesView: View {
                 
                 TwoLineWithMetaTextView(primaryText: experience.company, secondaryText: "\(experience.industry) • \(experience.location)", imageUrl: URL(string: logoUrlPdf))
                     .padding(.top, 16)
+                    .textCase(.uppercase)
                 
                 Divider()
                 
