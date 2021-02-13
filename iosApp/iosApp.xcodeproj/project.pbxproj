@@ -19,6 +19,8 @@
 		442F529A25D68D9000CF3CE6 /* SkillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F529925D68D9000CF3CE6 /* SkillsView.swift */; };
 		442F529E25D68ED800CF3CE6 /* ExperiencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F529D25D68ED800CF3CE6 /* ExperiencesView.swift */; };
 		4483D2D525D748A000EB4B61 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4483D2D425D748A000EB4B61 /* SDWebImageSwiftUI */; };
+		4483D2ED25D7B2E000EB4B61 /* RoleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483D2EC25D7B2E000EB4B61 /* RoleViewModel.swift */; };
+		4483D2F125D7B36300EB4B61 /* RoleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483D2F025D7B36300EB4B61 /* RoleState.swift */; };
 		4493FD4D25D3278400CA6D76 /* shared.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4493FD4C25D3278400CA6D76 /* shared.xcframework */; };
 		4493FD4E25D3278400CA6D76 /* shared.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4493FD4C25D3278400CA6D76 /* shared.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4493FD6225D341D600CA6D76 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4493FD6125D341D600CA6D76 /* ProfileView.swift */; };
@@ -87,6 +89,8 @@
 		442F529925D68D9000CF3CE6 /* SkillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsView.swift; sourceTree = "<group>"; };
 		442F529D25D68ED800CF3CE6 /* ExperiencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperiencesView.swift; sourceTree = "<group>"; };
 		446563EA2538941000A6AB4D /* Accessibility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accessibility.framework; path = System/Library/Frameworks/Accessibility.framework; sourceTree = SDKROOT; };
+		4483D2EC25D7B2E000EB4B61 /* RoleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewModel.swift; sourceTree = "<group>"; };
+		4483D2F025D7B36300EB4B61 /* RoleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleState.swift; sourceTree = "<group>"; };
 		4493FD4C25D3278400CA6D76 /* shared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = shared.xcframework; path = "../shared/build/xcode-frameworks/shared.xcframework"; sourceTree = "<group>"; };
 		4493FD6125D341D600CA6D76 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		4493FD6725D3447500CA6D76 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -156,9 +160,28 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
+		4483D2E825D7B23500EB4B61 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4493FD6725D3447500CA6D76 /* ProfileViewModel.swift */,
+				4493FD7125D3C4B000CA6D76 /* ProfileState.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		4483D2EB25D7B2A600EB4B61 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4483D2EC25D7B2E000EB4B61 /* RoleViewModel.swift */,
+				4483D2F025D7B36300EB4B61 /* RoleState.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		4493FD5F25D3412400CA6D76 /* experience */ = {
 			isa = PBXGroup;
 			children = (
+				4483D2EB25D7B2A600EB4B61 /* model */,
 			);
 			path = experience;
 			sourceTree = "<group>";
@@ -166,11 +189,10 @@
 		4493FD6025D3412B00CA6D76 /* profile */ = {
 			isa = PBXGroup;
 			children = (
+				4483D2E825D7B23500EB4B61 /* model */,
 				442F529D25D68ED800CF3CE6 /* ExperiencesView.swift */,
 				442F529325D6851000CF3CE6 /* PersonalDetailsView.swift */,
 				4493FD6125D341D600CA6D76 /* ProfileView.swift */,
-				4493FD6725D3447500CA6D76 /* ProfileViewModel.swift */,
-				4493FD7125D3C4B000CA6D76 /* ProfileState.swift */,
 				442F529925D68D9000CF3CE6 /* SkillsView.swift */,
 			);
 			path = profile;
@@ -474,6 +496,7 @@
 				4493FDA525D43DF200CA6D76 /* ImageLoader.swift in Sources */,
 				4493FD6225D341D600CA6D76 /* ProfileView.swift in Sources */,
 				4493FD7F25D3F22700CA6D76 /* SizeReader.swift in Sources */,
+				4483D2ED25D7B2E000EB4B61 /* RoleViewModel.swift in Sources */,
 				4493FDAF25D43E3600CA6D76 /* EnvironmentValues+ImageCache.swift in Sources */,
 				7555FF7F242A565900829871 /* AppDelegate.swift in Sources */,
 				442F529425D6851000CF3CE6 /* PersonalDetailsView.swift in Sources */,
@@ -487,6 +510,7 @@
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				4493FD6825D3447500CA6D76 /* ProfileViewModel.swift in Sources */,
 				4493FDA025D43D4C00CA6D76 /* AsyncImage.swift in Sources */,
+				4483D2F125D7B36300EB4B61 /* RoleState.swift in Sources */,
 				442F527A25D4AE3B00CF3CE6 /* LoadingView.swift in Sources */,
 				4493FD8E25D3FF6900CA6D76 /* ChipView.swift in Sources */,
 			);
