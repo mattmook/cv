@@ -39,10 +39,13 @@ struct ExperiencesView: View {
                         Divider().padding(.leading, 16).background(Color.secondarySystemGroupedBackground)
                     }
                     
-                    TwoLineWithMetaTextView(primaryText: role.title, secondaryText: role.team, metadata: role.period) {
-                        // navigate here
+                    NavigationLink(destination: RoleView.create(experience: experience, role: role)
+                    ) {
+                        TwoLineWithMetaTextView(primaryText: role.title, secondaryText: role.team, metadata: role.period) {
+                            // navigate here
+                        }
+                        .background(Color.secondarySystemGroupedBackground)
                     }
-                    .background(Color.secondarySystemGroupedBackground)
                 }
                 Divider()
             }

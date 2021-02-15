@@ -21,6 +21,7 @@
 		4483D2D525D748A000EB4B61 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4483D2D425D748A000EB4B61 /* SDWebImageSwiftUI */; };
 		4483D2ED25D7B2E000EB4B61 /* RoleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483D2EC25D7B2E000EB4B61 /* RoleViewModel.swift */; };
 		4483D2F125D7B36300EB4B61 /* RoleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483D2F025D7B36300EB4B61 /* RoleState.swift */; };
+		4483D2F525D7C4B700EB4B61 /* RoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483D2F425D7C4B700EB4B61 /* RoleView.swift */; };
 		4493FD4D25D3278400CA6D76 /* shared.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4493FD4C25D3278400CA6D76 /* shared.xcframework */; };
 		4493FD4E25D3278400CA6D76 /* shared.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4493FD4C25D3278400CA6D76 /* shared.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4493FD6225D341D600CA6D76 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4493FD6125D341D600CA6D76 /* ProfileView.swift */; };
@@ -91,6 +92,7 @@
 		446563EA2538941000A6AB4D /* Accessibility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accessibility.framework; path = System/Library/Frameworks/Accessibility.framework; sourceTree = SDKROOT; };
 		4483D2EC25D7B2E000EB4B61 /* RoleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewModel.swift; sourceTree = "<group>"; };
 		4483D2F025D7B36300EB4B61 /* RoleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleState.swift; sourceTree = "<group>"; };
+		4483D2F425D7C4B700EB4B61 /* RoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleView.swift; sourceTree = "<group>"; };
 		4493FD4C25D3278400CA6D76 /* shared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = shared.xcframework; path = "../shared/build/xcode-frameworks/shared.xcframework"; sourceTree = "<group>"; };
 		4493FD6125D341D600CA6D76 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		4493FD6725D3447500CA6D76 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				4483D2EB25D7B2A600EB4B61 /* model */,
+				4483D2F425D7C4B700EB4B61 /* RoleView.swift */,
 			);
 			path = experience;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				4493FDAF25D43E3600CA6D76 /* EnvironmentValues+ImageCache.swift in Sources */,
 				7555FF7F242A565900829871 /* AppDelegate.swift in Sources */,
 				442F529425D6851000CF3CE6 /* PersonalDetailsView.swift in Sources */,
+				4483D2F525D7C4B700EB4B61 /* RoleView.swift in Sources */,
 				442F527225D49AEE00CF3CE6 /* ErrorView.swift in Sources */,
 				4493FD8A25D3FCE800CA6D76 /* Color.swift in Sources */,
 				4493FD7925D3F1F500CA6D76 /* _FlexibleView.swift in Sources */,
