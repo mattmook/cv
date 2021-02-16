@@ -22,8 +22,8 @@ class RoleViewModel : ObservableObject {
     
     @Published var experience: Experience_
     @Published var role: Role_
-
-    @Published var state: RoleState = RoleState()
+    
+    @Published var state: RoleState
     
     private let profileRepository = Sdk().profileRepository()
     
@@ -31,12 +31,7 @@ class RoleViewModel : ObservableObject {
         self.experience = experience
         self.role = role
         
-        loadHeader()
-        //loadDetails()
-    }
-    
-    private func loadHeader() {
-        state = state.copy(
+        self.state = RoleState(
             header: RoleState.Header(
                 logoUrl: experience.logoUrl,
                 title: role.title,
@@ -44,6 +39,8 @@ class RoleViewModel : ObservableObject {
                 period: role.period
             )
         )
+        
+        loadDetails()
     }
     
     func loadDetails() {

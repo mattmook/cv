@@ -48,6 +48,9 @@ kotlin {
                 implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
                 implementation("com.russhwolf:multiplatform-settings:${Versions.multiplatformSettings}")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.Kotlinx.dateTime}")
+                implementation("co.touchlab:stately-iso-collections:1.1.1-a1")
+                implementation("co.touchlab:stately-isolate:1.1.1-a1")
+                implementation("co.touchlab:stately-concurrency:1.1.1")
             }
         }
         val commonTest by getting {

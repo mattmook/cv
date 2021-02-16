@@ -16,6 +16,7 @@
 
 package com.mattdolan.cv.data
 
+import co.touchlab.stately.collections.sharedMutableMapOf
 import com.mattdolan.cv.data.database.CvDatabaseDataSource
 import com.mattdolan.cv.data.network.CvNetworkDataSource
 import com.mattdolan.cv.domain.Experience
@@ -38,7 +39,7 @@ internal class ProfileRepositoryImpl(
 ) : ProfileRepository {
 
     private val mutex = Mutex()
-    private val inflightRequests = mutableMapOf<suspend () -> Any, Deferred<Any?>>()
+    private val inflightRequests = sharedMutableMapOf<suspend () -> Any, Deferred<Any?>>()
 
     private suspend fun <T : Any> cached(getDatabase: () -> T?, setDatabase: (T) -> Unit, getNetwork: suspend () -> T): T = coroutineScope {
         val job = mutex.withLock {

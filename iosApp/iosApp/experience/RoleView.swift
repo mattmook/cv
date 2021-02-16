@@ -17,15 +17,73 @@
 import SwiftUI
 import Combine
 import shared
+import SDWebImageSwiftUI
 
 public struct RoleView: View {
     
     @StateObject var roleViewModel: RoleViewModel
     
     public var body: some View {
-        Text(roleViewModel.state.header?.title ?? "n/a")
+        let logoUrlPdf = URL(string: roleViewModel.state.header.logoUrl.replacingOccurrences(of:".svg", with: ".pdf"))!
+        
+        switch roleViewModel.state.details {
+        case .Ready (let details):
+            ScrollView {
+                VStack(alignment: .leading, spacing: 0) {
+                    ForEach(details, id: \.self) { detail in
+                        HStack(alignment: .firstTextBaseline) {
+                            Text("•")
+                            Text(detail).font(.body).foregroundColor(.primary)
+                        }.padding(8)
+                    }
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarView(primaryText: roleViewModel.state.header.title, secondaryText: roleViewModel.state.header.team, logoUrl: logoUrlPdf)
+            }
+        case .Error:
+            ErrorView {
+                roleViewModel.loadDetails()
+            }
+            .navigationBarTitle(roleViewModel.state.header.title, displayMode:.inline)
+            .toolbar {
+                ToolbarView(primaryText: roleViewModel.state.header.title, secondaryText: roleViewModel.state.header.team, logoUrl: logoUrlPdf)
+            }
+        case .Loading:
+            LoadingView()
+                .navigationBarTitle(roleViewModel.state.header.title, displayMode:.inline)
+                .toolbar {
+                    ToolbarView(primaryText: roleViewModel.state.header.title, secondaryText: roleViewModel.state.header.team, logoUrl: logoUrlPdf)
+                }
+        }
     }
 }
+
+private struct ToolbarView: ToolbarContent {
+    var primaryText: String
+    var secondaryText: String?
+    var logoUrl: URL
+    
+    var body: some ToolbarContent {
+        ToolbarItem(placement: .principal) {
+            HStack {
+                AnimatedImage(url: logoUrl)
+                    .resizable()
+                    .frame(width: 32, height: 32)
+                
+                VStack(alignment: .leading) {
+                    Text(primaryText).font(.headline).foregroundColor(Color.primary)
+                    
+                    if let secondaryText = secondaryText {
+                        Text(secondaryText).font(.caption).foregroundColor(Color.secondary)
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 struct RoleView_Previews: PreviewProvider {
     static var previews: some View {

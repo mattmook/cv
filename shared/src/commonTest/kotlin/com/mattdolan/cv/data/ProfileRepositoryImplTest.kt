@@ -16,6 +16,9 @@
 
 package com.mattdolan.cv.data
 
+import co.touchlab.stately.collections.sharedMutableListOf
+import co.touchlab.stately.concurrency.AtomicBoolean
+import co.touchlab.stately.concurrency.AtomicReference
 import com.mattdolan.cv.data.database.CvDatabaseDataSource
 import com.mattdolan.cv.data.network.CvNetworkDataSource
 import com.mattdolan.cv.domain.Experience
@@ -44,10 +47,10 @@ class ProfileRepositoryImplTest {
         runBlocking {
             // Given database has personal details
             val personalDetails = Random.nextPersonalDetails()
-            mockDatabaseDataSource._personalDetails = personalDetails
+            mockDatabaseDataSource._personalDetails.set(personalDetails)
 
             // And cacheController will reset storage
-            mockCacheController._resetStorage = true
+            mockCacheController._resetStorage.value = true
 
             // When we request personal details
             profileRepository.personalDetails()
@@ -65,10 +68,10 @@ class ProfileRepositoryImplTest {
         runBlocking {
             // Given database has experiences
             val experiences = Random.nextList { Random.nextExperience() }
-            mockDatabaseDataSource._experiences = experiences
+            mockDatabaseDataSource._experiences.set(experiences)
 
             // And cacheController will reset storage
-            mockCacheController._resetStorage = true
+            mockCacheController._resetStorage.value = true
 
             // When we request experiences
             profileRepository.experiences()
@@ -86,10 +89,10 @@ class ProfileRepositoryImplTest {
         runBlocking {
             // Given database has skills
             val skills = Random.nextList { Random.nextSkill() }
-            mockDatabaseDataSource._skills = skills
+            mockDatabaseDataSource._skills.set(skills)
 
             // And cacheController will reset storage
-            mockCacheController._resetStorage = true
+            mockCacheController._resetStorage.value = true
 
             // When we request skills
             profileRepository.skills()
@@ -107,10 +110,10 @@ class ProfileRepositoryImplTest {
         runBlocking {
             // Given database has role details
             val roleDetails = Random.nextRoleDetails()
-            mockDatabaseDataSource._roleDetails = roleDetails
+            mockDatabaseDataSource._roleDetails.set(roleDetails)
 
             // And cacheController will reset storage
-            mockCacheController._resetStorage = true
+            mockCacheController._resetStorage.value = true
 
             // When we request role details
             profileRepository.roleDetails(Random.nextRole())
@@ -128,7 +131,7 @@ class ProfileRepositoryImplTest {
         runBlocking {
             // Given database has personal details
             val personalDetails = Random.nextPersonalDetails()
-            mockDatabaseDataSource._personalDetails = personalDetails
+            mockDatabaseDataSource._personalDetails.set(personalDetails)
 
             // When we request from the repository
             val result = profileRepository.personalDetails()
@@ -146,7 +149,7 @@ class ProfileRepositoryImplTest {
         runBlocking {
             // Given database has experiences
             val experiences = Random.nextList { Random.nextExperience() }
-            mockDatabaseDataSource._experiences = experiences
+            mockDatabaseDataSource._experiences.set(experiences)
 
             // When we request from the repository
             val result = profileRepository.experiences()
@@ -164,7 +167,7 @@ class ProfileRepositoryImplTest {
         runBlocking {
             // Given database has skills
             val skills = Random.nextList { Random.nextSkill() }
-            mockDatabaseDataSource._skills = skills
+            mockDatabaseDataSource._skills.set(skills)
 
             // When we request from the repository
             val result = profileRepository.skills()
@@ -182,7 +185,7 @@ class ProfileRepositoryImplTest {
         runBlocking {
             // Given database has role details
             val roleDetails = Random.nextRoleDetails()
-            mockDatabaseDataSource._roleDetails = roleDetails
+            mockDatabaseDataSource._roleDetails.set(roleDetails)
 
             // When we request from the repository
             val result = profileRepository.roleDetails(Random.nextRole())
@@ -200,7 +203,7 @@ class ProfileRepositoryImplTest {
         runBlocking {
             // Given database is empty and network has personal details
             val personalDetails = Random.nextPersonalDetails()
-            mockNetworkDataSource._personalDetails = personalDetails
+            mockNetworkDataSource._personalDetails.set(personalDetails)
 
             // When we request from the repository
             val result = profileRepository.personalDetails()
@@ -209,7 +212,7 @@ class ProfileRepositoryImplTest {
             result.shouldBe(personalDetails)
 
             // And saved to the database
-            mockDatabaseDataSource._personalDetails.shouldBe(personalDetails)
+            mockDatabaseDataSource._personalDetails.get().shouldBe(personalDetails)
 
             // And the network is queried
             mockNetworkDataSource.actions.shouldContainExactly(listOf("getPersonalDetails"))
@@ -221,7 +224,7 @@ class ProfileRepositoryImplTest {
         runBlocking {
             // Given database is empty and network has experiences
             val experiences = Random.nextList { Random.nextExperience() }
-            mockNetworkDataSource._experiences = experiences
+            mockNetworkDataSource._experiences.set(experiences)
 
             // When we request from the repository
             val result = profileRepository.experiences()
@@ -230,7 +233,7 @@ class ProfileRepositoryImplTest {
             result.shouldBe(experiences)
 
             // And saved to the database
-            mockDatabaseDataSource._experiences.shouldBe(experiences)
+            mockDatabaseDataSource._experiences.get().shouldBe(experiences)
 
             // And the network is queried
             mockNetworkDataSource.actions.shouldContainExactly(listOf("getExperiences"))
@@ -242,7 +245,7 @@ class ProfileRepositoryImplTest {
         runBlocking {
             // Given database is empty and network has skills
             val skills = Random.nextList { Random.nextSkill() }
-            mockNetworkDataSource._skills = skills
+            mockNetworkDataSource._skills.set(skills)
 
             // When we request from the repository
             val result = profileRepository.skills()
@@ -251,7 +254,7 @@ class ProfileRepositoryImplTest {
             result.shouldBe(skills)
 
             // And saved to the database
-            mockDatabaseDataSource._skills.shouldBe(skills)
+            mockDatabaseDataSource._skills.get().shouldBe(skills)
 
             // And the network is queried
             mockNetworkDataSource.actions.shouldContainExactly(listOf("getSkills"))
@@ -263,7 +266,7 @@ class ProfileRepositoryImplTest {
         runBlocking {
             // Given database is empty and network has role details
             val roleDetails = Random.nextRoleDetails()
-            mockNetworkDataSource._roleDetails = roleDetails
+            mockNetworkDataSource._roleDetails.set(roleDetails)
 
             // When we request from the repository
             val result = profileRepository.roleDetails(Random.nextRole())
@@ -272,7 +275,7 @@ class ProfileRepositoryImplTest {
             result.shouldBe(roleDetails)
 
             // And saved to the database
-            mockDatabaseDataSource._roleDetails.shouldBe(roleDetails)
+            mockDatabaseDataSource._roleDetails.get().shouldBe(roleDetails)
 
             // And the network is queried
             mockNetworkDataSource.actions.shouldContainExactly(listOf("getRoleDetails"))
@@ -281,51 +284,51 @@ class ProfileRepositoryImplTest {
 
     @Suppress("PropertyName")
     private class MockCacheController : CacheController {
-        val actions = mutableListOf<String>()
-        var _resetStorage: Boolean = false
+        val actions = sharedMutableListOf<String>()
+        var _resetStorage = AtomicBoolean(false)
 
         override fun verifyCache(resetStorage: () -> Unit) {
             actions.add("verifyCache")
-            if (_resetStorage) resetStorage()
+            if (_resetStorage.value) resetStorage()
         }
     }
 
     @Suppress("PropertyName")
     private class MockNetworkDataSource : CvNetworkDataSource {
-        val actions = mutableListOf<String>()
-        var _experiences: List<Experience>? = null
-        var _skills: List<Skill>? = null
-        var _personalDetails: PersonalDetails? = null
-        var _roleDetails: RoleDetails? = null
+        val actions = sharedMutableListOf<String>()
+        var _experiences = AtomicReference<List<Experience>?>(null)
+        var _skills = AtomicReference<List<Skill>?>(null)
+        var _personalDetails = AtomicReference<PersonalDetails?>(null)
+        var _roleDetails = AtomicReference<RoleDetails?>(null)
 
         override suspend fun getExperiences(): List<Experience> {
             actions.add("getExperiences")
-            return _experiences ?: throw IllegalStateException("Not populated")
+            return _experiences.get() ?: throw IllegalStateException("Not populated")
         }
 
         override suspend fun getSkills(): List<Skill> {
             actions.add("getSkills")
-            return _skills ?: throw IllegalStateException("Not populated")
+            return _skills.get() ?: throw IllegalStateException("Not populated")
         }
 
         override suspend fun getPersonalDetails(): PersonalDetails {
             actions.add("getPersonalDetails")
-            return _personalDetails ?: throw IllegalStateException("Not populated")
+            return _personalDetails.get() ?: throw IllegalStateException("Not populated")
         }
 
         override suspend fun getRoleDetails(role: Role): RoleDetails {
             actions.add("getRoleDetails")
-            return _roleDetails ?: throw IllegalStateException("Not populated")
+            return _roleDetails.get() ?: throw IllegalStateException("Not populated")
         }
     }
 
     @Suppress("PropertyName")
     private class MockDatabaseDataSource : CvDatabaseDataSource {
-        val actions = mutableListOf<String>()
-        var _experiences: List<Experience>? = null
-        var _skills: List<Skill>? = null
-        var _personalDetails: PersonalDetails? = null
-        var _roleDetails: RoleDetails? = null
+        val actions = sharedMutableListOf<String>()
+        var _experiences = AtomicReference<List<Experience>?>(null)
+        var _skills = AtomicReference<List<Skill>?>(null)
+        var _personalDetails = AtomicReference<PersonalDetails?>(null)
+        var _roleDetails = AtomicReference<RoleDetails?>(null)
 
         override fun clearDatabase() {
             actions.add("clearDatabase")
@@ -333,42 +336,42 @@ class ProfileRepositoryImplTest {
 
         override fun getExperiences(): List<Experience>? {
             actions.add("getExperiences")
-            return _experiences
+            return _experiences.get()
         }
 
         override fun setExperiences(value: List<Experience>) {
             actions.add("setExperiences")
-            _experiences = value
+            _experiences.set(value)
         }
 
         override fun getPersonalDetails(): PersonalDetails? {
             actions.add("getPersonalDetails")
-            return _personalDetails
+            return _personalDetails.get()
         }
 
         override fun setPersonalDetails(value: PersonalDetails) {
             actions.add("setPersonalDetails")
-            _personalDetails = value
+            _personalDetails.set(value)
         }
 
         override fun getSkills(): List<Skill>? {
             actions.add("getSkills")
-            return _skills
+            return _skills.get()
         }
 
         override fun setSkills(value: List<Skill>) {
             actions.add("setSkills")
-            _skills = value
+            _skills.set(value)
         }
 
         override fun getRoleDetails(role: Role): RoleDetails? {
             actions.add("getRoleDetails")
-            return _roleDetails
+            return _roleDetails.get()
         }
 
         override fun setRoleDetails(role: Role, roleDetails: RoleDetails) {
             actions.add("setRoleDetails")
-            this._roleDetails = roleDetails
+            this._roleDetails.set(roleDetails)
         }
     }
 }

@@ -17,21 +17,17 @@
 import shared
 
 struct RoleState {
-    let header: Header?
+    let header: Header
     let details: Details
     
-    init() {
-        self.header = nil
+    init(header: Header) {
+        self.header = header
         self.details = .Loading
     }
     
-    init(header: Header?, details: Details) {
+    init(header: Header, details: Details) {
         self.header = header
         self.details = details
-    }
-    
-    func copy(header: Header?) -> RoleState {
-        return RoleState(header: header, details: self.details)
     }
     
     func copy(details: Details) -> RoleState {
