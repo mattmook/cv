@@ -18,17 +18,17 @@ import SwiftUI
 
 struct ErrorView: View {
     var action: () -> Void
-    
+
     @Environment(\.colorScheme) var colorScheme
-    
+
     var body: some View {
         VStack {
             Spacer()
             Text("Sorry, something went wrong").font(.body)
             Spacer()
             LottieView(name: colorScheme == .dark ? "cv-failed-dark" : "cv-failed")
-                .frame(width:128, height:128)
-                .id(self.colorScheme)
+                .frame(width: 128, height: 128)
+                .id(colorScheme)
             Spacer()
             Button("Retry") {
                 action()
@@ -40,10 +40,9 @@ struct ErrorView: View {
 
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        
+
         ForEach(ColorScheme.allCases, id: \.self) {
             ErrorView {}.preferredColorScheme($0)
         }
-        
     }
 }

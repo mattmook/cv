@@ -15,7 +15,7 @@ extension Color {
 
 // See https://stackoverflow.com/a/63042005/14508577
 extension Color {
-     
+
     // MARK: - Text Colors
     static let lightText = Color(UIColor.lightText)
     static let darkText = Color(UIColor.darkText)
@@ -31,18 +31,18 @@ extension Color {
     static let systemBackground = Color(UIColor.systemBackground)
     static let secondarySystemBackground = Color(UIColor.secondarySystemBackground)
     static let tertiarySystemBackground = Color(UIColor.tertiarySystemBackground)
-    
+
     // MARK: - Fill Colors
     static let systemFill = Color(UIColor.systemFill)
     static let secondarySystemFill = Color(UIColor.secondarySystemFill)
     static let tertiarySystemFill = Color(UIColor.tertiarySystemFill)
     static let quaternarySystemFill = Color(UIColor.quaternarySystemFill)
-    
+
     // MARK: - Grouped Background Colors
     static let systemGroupedBackground = Color(UIColor.systemGroupedBackground)
     static let secondarySystemGroupedBackground = Color(UIColor.secondarySystemGroupedBackground)
     static let tertiarySystemGroupedBackground = Color(UIColor.tertiarySystemGroupedBackground)
-    
+
     // MARK: - Gray Colors
     static let systemGray = Color(UIColor.systemGray)
     static let systemGray2 = Color(UIColor.systemGray2)
@@ -50,12 +50,12 @@ extension Color {
     static let systemGray4 = Color(UIColor.systemGray4)
     static let systemGray5 = Color(UIColor.systemGray5)
     static let systemGray6 = Color(UIColor.systemGray6)
-    
+
     // MARK: - Other Colors
     static let separator = Color(UIColor.separator)
     static let opaqueSeparator = Color(UIColor.opaqueSeparator)
     static let link = Color(UIColor.link)
-    
+
     // MARK: System Colors
     static let systemBlue = Color(UIColor.systemBlue)
     static let systemPurple = Color(UIColor.systemPurple)
@@ -66,5 +66,4 @@ extension Color {
     static let systemRed = Color(UIColor.systemRed)
     static let systemTeal = Color(UIColor.systemTeal)
     static let systemIndigo = Color(UIColor.systemIndigo)
-
 }

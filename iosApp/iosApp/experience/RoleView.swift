@@ -20,14 +20,14 @@ import shared
 import SDWebImageSwiftUI
 
 public struct RoleView: View {
-    
+
     @StateObject var roleViewModel: RoleViewModel
-    
+
     public var body: some View {
-        let logoUrlPdf = URL(string: roleViewModel.state.header.logoUrl.replacingOccurrences(of:".svg", with: ".pdf"))!
-        
+        let logoUrlPdf = URL(string: roleViewModel.state.header.logoUrl.replacingOccurrences(of: ".svg", with: ".pdf"))!
+
         switch roleViewModel.state.details {
-        case .Ready (let details):
+        case .Ready(let details):
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     ForEach(details, id: \.self) { detail in
@@ -38,21 +38,21 @@ public struct RoleView: View {
                     }
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarView(primaryText: roleViewModel.state.header.title, secondaryText: roleViewModel.state.header.team, logoUrl: logoUrlPdf)
-            }
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarView(primaryText: roleViewModel.state.header.title, secondaryText: roleViewModel.state.header.team, logoUrl: logoUrlPdf)
+                }
         case .Error:
             ErrorView {
                 roleViewModel.loadDetails()
             }
-            .navigationBarTitle(roleViewModel.state.header.title, displayMode:.inline)
-            .toolbar {
-                ToolbarView(primaryText: roleViewModel.state.header.title, secondaryText: roleViewModel.state.header.team, logoUrl: logoUrlPdf)
-            }
+                .navigationBarTitle(roleViewModel.state.header.title, displayMode: .inline)
+                .toolbar {
+                    ToolbarView(primaryText: roleViewModel.state.header.title, secondaryText: roleViewModel.state.header.team, logoUrl: logoUrlPdf)
+                }
         case .Loading:
             LoadingView()
-                .navigationBarTitle(roleViewModel.state.header.title, displayMode:.inline)
+                .navigationBarTitle(roleViewModel.state.header.title, displayMode: .inline)
                 .toolbar {
                     ToolbarView(primaryText: roleViewModel.state.header.title, secondaryText: roleViewModel.state.header.team, logoUrl: logoUrlPdf)
                 }
@@ -64,17 +64,17 @@ private struct ToolbarView: ToolbarContent {
     var primaryText: String
     var secondaryText: String?
     var logoUrl: URL
-    
+
     var body: some ToolbarContent {
         ToolbarItem(placement: .principal) {
             HStack {
                 AnimatedImage(url: logoUrl)
                     .resizable()
                     .frame(width: 32, height: 32)
-                
+
                 VStack(alignment: .leading) {
                     Text(primaryText).font(.headline).foregroundColor(Color.primary)
-                    
+
                     if let secondaryText = secondaryText {
                         Text(secondaryText).font(.caption).foregroundColor(Color.secondary)
                     }
@@ -84,17 +84,16 @@ private struct ToolbarView: ToolbarContent {
     }
 }
 
-
 struct RoleView_Previews: PreviewProvider {
     static var previews: some View {
-        
+
         let role = Role_(
             title: "Senior Android Engineer",
             team: "Android platform team",
             period: "07/2018 - present",
             detailUrl: "https://somewhere"
         )
-        
+
         RoleView.create(
             experience: Experience_(
                 company: "Babylon Health",

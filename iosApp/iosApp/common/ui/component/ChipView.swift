@@ -18,7 +18,7 @@ import SwiftUI
 
 struct ChipView: View {
     var text: String
-    
+
     var body: some View {
         Text(text)
             .padding(4)
@@ -34,7 +34,5 @@ struct ChipView_Previews: PreviewProvider {
             ChipView(text: "Hello world")
                 .preferredColorScheme($0)
         }
-
-        
     }
 }

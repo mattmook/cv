@@ -31,7 +31,7 @@ class RoleViewModel : ObservableObject {
         self.experience = experience
         self.role = role
         
-        self.state = RoleState(
+        state = RoleState(
             header: RoleState.Header(
                 logoUrl: experience.logoUrl,
                 title: role.title,
@@ -58,7 +58,7 @@ class RoleViewModel : ObservableObject {
     }
     
     private func roleDetails(role: Role_) -> AnyPublisher<RoleDetails_, Error> {
-        return Deferred {
+        Deferred {
             Future<RoleDetails_, Error> { promise in
                 self.profileRepository.roleDetails(role: role) { (roleDetails: RoleDetails_?, error: Error?) in
                     if let error = error {

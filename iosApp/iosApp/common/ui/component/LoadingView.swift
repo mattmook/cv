@@ -17,22 +17,20 @@
 import SwiftUI
 
 struct LoadingView: View {
-    
+
     @Environment(\.colorScheme) var colorScheme
-    
+
     var body: some View {
-            LottieView(name: colorScheme == .dark ? "cv-loading-dark" : "cv-loading")
-                .frame(width:128, height:128)
-                .id(self.colorScheme)
+        LottieView(name: colorScheme == .dark ? "cv-loading-dark" : "cv-loading")
+            .frame(width: 128, height: 128)
+            .id(colorScheme)
     }
 }
 
 struct LoadingView_Previews: PreviewProvider {
     static var previews: some View {
-        
         ForEach(ColorScheme.allCases, id: \.self) {
             LoadingView().preferredColorScheme($0)
         }
-        
     }
 }

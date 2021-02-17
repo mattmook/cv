@@ -6,16 +6,16 @@ struct LottieView: UIViewRepresentable {
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
-    
+
     var name: String!
-    
+
     var animationView = AnimationView()
 
     class Coordinator: NSObject {
         var parent: LottieView
-    
+
         init(_ animationView: LottieView) {
-            self.parent = animationView
+            parent = animationView
             super.init()
         }
     }

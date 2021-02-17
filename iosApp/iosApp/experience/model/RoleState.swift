@@ -19,28 +19,28 @@ import shared
 struct RoleState {
     let header: Header
     let details: Details
-    
+
     init(header: Header) {
         self.header = header
-        self.details = .Loading
+        details = .Loading
     }
-    
+
     init(header: Header, details: Details) {
         self.header = header
         self.details = details
     }
-    
+
     func copy(details: Details) -> RoleState {
-        return RoleState(header: self.header, details: details)
+        RoleState(header: header, details: details)
     }
-    
+
     struct Header {
         let logoUrl: String
         let title: String
         let team: String?
         let period: String
     }
-    
+
     enum Details {
         case Loading
         case Error
