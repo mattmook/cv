@@ -22,7 +22,7 @@ struct RoleState {
 
     init(header: Header) {
         self.header = header
-        details = .Loading
+        details = .loading
     }
 
     init(header: Header, details: Details) {
@@ -42,8 +42,8 @@ struct RoleState {
     }
 
     enum Details {
-        case Loading
-        case Error
-        case Ready([String])
+        case loading
+        case error
+        case ready([String])
     }
 }

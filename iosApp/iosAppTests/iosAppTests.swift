@@ -1,6 +1,7 @@
 import XCTest
 @testable import iosApp
 
+// swiftlint:disable:next type_name
 class iosAppTests: XCTestCase {
 
     override func setUp() {

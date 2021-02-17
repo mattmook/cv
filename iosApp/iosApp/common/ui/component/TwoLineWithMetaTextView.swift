@@ -20,9 +20,9 @@ import SDWebImageSwiftUI
 struct TwoLineWithMetaTextView: View {
     var primaryText: String
     var secondaryText: String?
-    var metadata: String? = nil
-    var imageUrl: URL? = nil
-    var action: (() -> Any)? = nil
+    var metadata: String?
+    var imageUrl: URL?
+    var action: (() -> Any)?
 
     var body: some View {
         HStack(spacing: 0) {
@@ -41,7 +41,7 @@ struct TwoLineWithMetaTextView: View {
 
                     Spacer()
 
-                    if (metadata != nil) {
+                    if metadata != nil {
                         Text(metadata!).foregroundColor(Color.primary).font(.system(.caption))
                     }
                 }
@@ -63,8 +63,11 @@ struct TwoLineWithMetaTextView: View {
 struct TwoLineWithMetaTextView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) {
-            TwoLineWithMetaTextView(primaryText: "Babylon Health", secondaryText: "Health care • London", metadata: "07/2018 - present")
-                .preferredColorScheme($0)
+            TwoLineWithMetaTextView(
+                primaryText: "Babylon Health",
+                secondaryText: "Health care • London",
+                metadata: "07/2018 - present"
+            ).preferredColorScheme($0)
         }
     }
 }

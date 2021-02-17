@@ -44,13 +44,13 @@ class RoleViewModel: ObservableObject {
     }
 
     func loadDetails() {
-        state = state.copy(details: .Loading)
+        state = state.copy(details: .loading)
 
         roleDetails(role: role)
             .map({ (roleDetails) -> RoleState.Details in
-                .Ready(roleDetails.description_)
+                .ready(roleDetails.description_)
             })
-            .replaceError(with: .Error)
+            .replaceError(with: .error)
             .map { (roleDetails) -> RoleState in
                 self.state.copy(details: roleDetails)
             }

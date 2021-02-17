@@ -25,7 +25,7 @@ struct ProfileView: View {
     var body: some View {
         NavigationView {
             switch profileViewModel.state {
-            case .Ready(let (personalDetails, experiences, skills)):
+            case .ready(let (personalDetails, experiences, skills)):
                 ScrollView {
                     VStack(spacing: 0) {
                         PersonalDetailsView(personalDetails: personalDetails)
@@ -38,11 +38,11 @@ struct ProfileView: View {
                     }
                 }.background(Color.systemGroupedBackground)
                     .navigationBarHidden(true)
-            case .Error:
+            case .error:
                 ErrorView {
                     profileViewModel.loadProfile()
                 }.navigationBarHidden(true)
-            case .Loading:
+            case .loading:
                 LoadingView()
                     .navigationBarHidden(true)
             }

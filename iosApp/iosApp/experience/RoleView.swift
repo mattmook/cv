@@ -27,7 +27,7 @@ public struct RoleView: View {
         let logoUrlPdf = URL(string: roleViewModel.state.header.logoUrl.replacingOccurrences(of: ".svg", with: ".pdf"))!
 
         switch roleViewModel.state.details {
-        case .Ready(let details):
+        case .ready(let details):
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     ForEach(details, id: \.self) { detail in
@@ -40,21 +40,33 @@ public struct RoleView: View {
             }
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    ToolbarView(primaryText: roleViewModel.state.header.title, secondaryText: roleViewModel.state.header.team, logoUrl: logoUrlPdf)
+                    ToolbarView(
+                        primaryText: roleViewModel.state.header.title,
+                        secondaryText: roleViewModel.state.header.team,
+                        logoUrl: logoUrlPdf
+                    )
                 }
-        case .Error:
+        case .error:
             ErrorView {
                 roleViewModel.loadDetails()
             }
                 .navigationBarTitle(roleViewModel.state.header.title, displayMode: .inline)
                 .toolbar {
-                    ToolbarView(primaryText: roleViewModel.state.header.title, secondaryText: roleViewModel.state.header.team, logoUrl: logoUrlPdf)
+                    ToolbarView(
+                        primaryText: roleViewModel.state.header.title,
+                        secondaryText: roleViewModel.state.header.team,
+                        logoUrl: logoUrlPdf
+                    )
                 }
-        case .Loading:
+        case .loading:
             LoadingView()
                 .navigationBarTitle(roleViewModel.state.header.title, displayMode: .inline)
                 .toolbar {
-                    ToolbarView(primaryText: roleViewModel.state.header.title, secondaryText: roleViewModel.state.header.team, logoUrl: logoUrlPdf)
+                    ToolbarView(
+                        primaryText: roleViewModel.state.header.title,
+                        secondaryText: roleViewModel.state.header.team,
+                        logoUrl: logoUrlPdf
+                    )
                 }
         }
     }

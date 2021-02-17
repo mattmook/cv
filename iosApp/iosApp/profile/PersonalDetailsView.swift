@@ -43,8 +43,13 @@ struct PersonalDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) {
             PersonalDetailsView(
-                personalDetails: PersonalDetails_(name: "Matthew Dolan", tagline: "Experienced Mobile Software Specialist", location: "London, UK", avatarUrl: "https://s.gravatar.com/avatar/cc6ebb978003e63edda0ad8161cd04cd.jpeg?s=300"))
-                .preferredColorScheme($0)
+                personalDetails: PersonalDetails_(
+                    name: "Matthew Dolan",
+                    tagline: "Experienced Mobile Software Specialist",
+                    location: "London, UK",
+                    avatarUrl: "https://s.gravatar.com/avatar/cc6ebb978003e63edda0ad8161cd04cd.jpeg?s=300"
+                )
+            ).preferredColorScheme($0)
         }
     }
 }

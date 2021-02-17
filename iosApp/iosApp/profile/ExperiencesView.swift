@@ -26,25 +26,28 @@ struct ExperiencesView: View {
 
                 let logoUrlPdf = experience.logoUrl.replacingOccurrences(of: ".svg", with: ".pdf")
 
-                TwoLineWithMetaTextView(primaryText: experience.company, secondaryText: "\(experience.industry) • \(experience.location)", imageUrl: URL(string: logoUrlPdf))
-                    .padding(.top, 16)
-                    .textCase(.uppercase)
+                TwoLineWithMetaTextView(
+                    primaryText: experience.company,
+                    secondaryText: "\(experience.industry) • \(experience.location)",
+                    imageUrl: URL(string: logoUrlPdf)
+                ).padding(.top, 16).textCase(.uppercase)
 
                 Divider()
 
                 ForEach(experience.roles.indices) { index in
                     let role = experience.roles[index]
 
-                    if (index != 0) {
+                    if index != 0 {
                         Divider().padding(.leading, 16).background(Color.secondarySystemGroupedBackground)
                     }
 
                     NavigationLink(destination: RoleView.create(experience: experience, role: role)
                     ) {
-                        TwoLineWithMetaTextView(primaryText: role.title, secondaryText: role.team, metadata: role.period) {
-                            // navigate here
-                        }
-                            .background(Color.secondarySystemGroupedBackground)
+                        TwoLineWithMetaTextView(
+                            primaryText: role.title,
+                            secondaryText: role.team,
+                            metadata: role.period
+                        ).background(Color.secondarySystemGroupedBackground)
                     }
                 }
                 Divider()
@@ -98,8 +101,7 @@ struct ExperiencesView_Previews: PreviewProvider {
                     )
 
                 ]
-            )
-                .preferredColorScheme($0)
+            ).preferredColorScheme($0)
         }
     }
 }

@@ -20,7 +20,7 @@ import shared
 
 class ProfileViewModel: ObservableObject {
 
-    @Published var state: ProfileState = .Loading
+    @Published var state: ProfileState = .loading
 
     private let profileRepository = Sdk().profileRepository()
 
@@ -29,10 +29,12 @@ class ProfileViewModel: ObservableObject {
     }
 
     func loadProfile() {
-        state = .Loading
-        Publishers.CombineLatest3(personalDetails(), experiences(), skills()).map { (personalDetails, experiences, skills) -> ProfileState in
-                .Ready((personalDetails, experiences, skills))
-            }.replaceError(with: .Error)
+        state = .loading
+        Publishers.CombineLatest3(personalDetails(), experiences(), skills())
+            .map { (personalDetails, experiences, skills) -> ProfileState in
+                .ready((personalDetails, experiences, skills))
+            }
+            .replaceError(with: .error)
             .eraseToAnyPublisher()
             .assign(to: &$state)
     }

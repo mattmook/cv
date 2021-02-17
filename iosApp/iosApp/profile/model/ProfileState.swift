@@ -17,7 +17,8 @@
 import shared
 
 enum ProfileState {
-    case Loading
-    case Error
-    case Ready((PersonalDetails_, [Experience_], [Skill_]))
+    case loading
+    case error
+    // swiftlint:disable:next large_tuple
+    case ready((PersonalDetails_, [Experience_], [Skill_]))
 }

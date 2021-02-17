@@ -2,8 +2,8 @@
 
 import SwiftUI
 
-/// This view is responsible to lay down the given elements and wrap them into
-/// multiple rows if needed.
+// This view is responsible to lay down the given elements and wrap them into multiple rows if needed.
+// swiftlint:disable:next type_name
 struct _FlexibleView<Data: Collection, Content: View>: View where Data.Element: Hashable {
     let availableWidth: CGFloat
     let data: Data
@@ -39,12 +39,12 @@ struct _FlexibleView<Data: Collection, Content: View>: View where Data.Element: 
             if remainingWidth - (elementSize.width + spacing) >= 0 {
                 rows[currentRow].append(element)
             } else {
-                currentRow = currentRow + 1
+                currentRow += 1
                 rows.append([element])
                 remainingWidth = availableWidth
             }
 
-            remainingWidth = remainingWidth - (elementSize.width + spacing)
+            remainingWidth -= elementSize.width + spacing
         }
 
         return rows
