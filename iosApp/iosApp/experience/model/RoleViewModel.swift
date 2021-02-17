@@ -18,19 +18,19 @@ import SwiftUI
 import Combine
 import shared
 
-class RoleViewModel : ObservableObject {
-    
+class RoleViewModel: ObservableObject {
+
     @Published var experience: Experience_
     @Published var role: Role_
-    
+
     @Published var state: RoleState
-    
+
     private let profileRepository = Sdk().profileRepository()
-    
+
     init(experience: Experience_, role: Role_) {
         self.experience = experience
         self.role = role
-        
+
         state = RoleState(
             header: RoleState.Header(
                 logoUrl: experience.logoUrl,
@@ -39,13 +39,13 @@ class RoleViewModel : ObservableObject {
                 period: role.period
             )
         )
-        
+
         loadDetails()
     }
-    
+
     func loadDetails() {
         state = state.copy(details: .Loading)
-        
+
         roleDetails(role: role)
             .map({ (roleDetails) -> RoleState.Details in
                 .Ready(roleDetails.description_)
@@ -56,7 +56,7 @@ class RoleViewModel : ObservableObject {
             }
             .assign(to: &$state)
     }
-    
+
     private func roleDetails(role: Role_) -> AnyPublisher<RoleDetails_, Error> {
         Deferred {
             Future<RoleDetails_, Error> { promise in

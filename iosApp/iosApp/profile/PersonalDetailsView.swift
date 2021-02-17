@@ -19,7 +19,7 @@ import shared
 
 struct PersonalDetailsView: View {
     var personalDetails: PersonalDetails_
-    
+
     var body: some View {
         VStack {
             AsyncImage(
@@ -27,13 +27,13 @@ struct PersonalDetailsView: View {
                 placeholder: { Circle().foregroundColor(Color.tertiarySystemGroupedBackground) },
                 image: { Image(uiImage: $0).resizable() }
             )
-            .frame(width: 128, height: 128)
-            .clipShape(Circle())
-            
+                .frame(width: 128, height: 128)
+                .clipShape(Circle())
+
             Text(personalDetails.name).font(.system(.body))
-            
+
             Text(personalDetails.tagline).font(.system(.caption))
-            
+
             Text(personalDetails.location).font(.system(.caption))
         }.padding(.horizontal, 16)
     }

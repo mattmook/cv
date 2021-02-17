@@ -19,25 +19,25 @@ import Combine
 import shared
 
 struct ProfileView: View {
-    
+
     @StateObject private var profileViewModel = ProfileViewModel()
-    
+
     var body: some View {
         NavigationView {
             switch profileViewModel.state {
-            case .Ready (let (personalDetails, experiences, skills)):
+            case .Ready(let (personalDetails, experiences, skills)):
                 ScrollView {
                     VStack(spacing: 0) {
                         PersonalDetailsView(personalDetails: personalDetails)
                             .padding(.vertical, 16)
-                        
+
                         SkillsView(skills: skills)
                             .padding(.vertical, 16)
-                        
+
                         ExperiencesView(experiences: experiences)
                     }
                 }.background(Color.systemGroupedBackground)
-                .navigationBarHidden(true)
+                    .navigationBarHidden(true)
             case .Error:
                 ErrorView {
                     profileViewModel.loadProfile()
