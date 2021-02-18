@@ -30,7 +30,7 @@ object Versions {
     const val ktor = "1.5.0"
     const val mockitoKotlin = "2.2.0"
     const val multiplatformSettings = "0.7.1"
-    const val orbitMvi = "2.2.0"
+    const val orbitMvi = "3.0.0"
     const val sqlDelight = "1.4.4"
     const val sqliter = "0.7.1"
 
