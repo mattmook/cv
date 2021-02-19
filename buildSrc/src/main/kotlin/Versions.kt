@@ -16,7 +16,7 @@
 
 object Versions {
 
-    const val kotlin = "1.4.21"
+    const val kotlin = "1.4.30"
 
     const val androidGradlePlugin = "4.1.2"
     const val detektGradlePlugin = "1.15.0"
@@ -27,16 +27,16 @@ object Versions {
     const val coroutines = "1.4.2"
     const val coroutinesNative = "1.4.2-native-mt"
     const val groupie = "2.9.0"
-    const val ktor = "1.5.0"
+    const val ktor = "1.5.1"
     const val mockitoKotlin = "2.2.0"
-    const val multiplatformSettings = "0.7.1"
-    const val orbitMvi = "3.0.0"
+    const val multiplatformSettings = "0.7.2"
+    const val orbitMvi = "3.0.1"
     const val sqlDelight = "1.4.4"
     const val sqliter = "0.7.1"
 
-    const val junit4 = "4.13.1"
+    const val junit4 = "4.13.2"
     const val kaspresso = "1.2.0"
-    const val kotest = "4.3.1"
+    const val kotest = "4.4.1"
 
     const val desugar = "1.1.1"
     const val leakCanary = "2.6"
@@ -44,10 +44,10 @@ object Versions {
     object AndroidX {
         const val appCompat = "1.2.0"
         const val constraintLayout = "2.1.0-alpha2"
-        const val fragment = "1.2.5"
+        const val fragment = "1.3.0"
         const val hilt = "1.0.0-alpha02"
-        const val lifecycle = "2.2.0"
-        const val navigation = "2.3.2"
+        const val lifecycle = "2.3.0"
+        const val navigation = "2.3.3"
         const val vectorDrawable = "1.1.0"
 
         const val espresso = "3.3.0"
