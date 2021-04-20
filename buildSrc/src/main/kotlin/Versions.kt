@@ -28,7 +28,6 @@ object Versions {
     const val coroutinesNative = "1.4.2-native-mt"
     const val groupie = "2.9.0"
     const val ktor = "1.5.1"
-    const val mockitoKotlin = "2.2.0"
     const val multiplatformSettings = "0.7.2"
     const val orbitMvi = "3.0.1"
     const val sqlDelight = "1.4.4"
@@ -37,6 +36,7 @@ object Versions {
     const val junit4 = "4.13.2"
     const val kaspresso = "1.2.0"
     const val kotest = "4.4.1"
+    const val mockitoKotlin = "2.2.0"
 
     const val desugar = "1.1.1"
     const val leakCanary = "2.6"
@@ -58,8 +58,8 @@ object Versions {
     }
 
     object Google {
-        val dagger = "2.31.1-alpha"
-        val material = "1.3.0-rc01"
+        const val dagger = "2.31.1-alpha"
+        const val material = "1.3.0-rc01"
     }
 
     object Kotlinx {
