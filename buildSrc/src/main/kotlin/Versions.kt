@@ -18,47 +18,47 @@ object Versions {
 
     const val kotlin = "1.5.31"
 
-    const val androidGradlePlugin = "7.0.2"
+    const val androidGradlePlugin = "7.0.3"
     const val detektGradlePlugin = "1.15.0"
     const val gradleVersionsPlugin = "0.36.0"
     const val markdownlintGradlePlugin = "0.6.0"
 
-    const val coil = "1.1.1"
+    const val coil = "1.4.0"
     const val coroutines = "1.5.2"
     const val coroutinesNative = "1.5.2-native-mt"
     const val groupie = "2.9.0"
-    const val ktor = "1.5.1"
-    const val multiplatformSettings = "0.7.2"
+    const val ktor = "1.6.4"
+    const val multiplatformSettings = "0.8.1"
     const val orbitMvi = "4.2.0"
-    const val sqlDelight = "1.4.4"
+    const val sqlDelight = "1.5.2"
     const val sqliter = "0.7.1"
 
     const val junit4 = "4.13.2"
-    const val kaspresso = "1.2.0"
-    const val kotest = "4.4.1"
+    const val kaspresso = "1.2.1"
+    const val kotest = "4.6.3"
     const val mockitoKotlin = "2.2.0"
 
-    const val desugar = "1.1.1"
-    const val leakCanary = "2.6"
+    const val desugar = "1.1.5"
+    const val leakCanary = "2.7"
 
     object AndroidX {
-        const val appCompat = "1.2.0"
-        const val constraintLayout = "2.1.0-alpha2"
-        const val fragment = "1.3.0"
-        const val lifecycle = "2.3.0"
-        const val navigation = "2.3.3"
+        const val appCompat = "1.3.1"
+        const val constraintLayout = "2.1.1"
+        const val fragment = "1.3.6"
+        const val lifecycle = "2.3.1"
+        const val navigation = "2.3.5"
         const val vectorDrawable = "1.1.0"
 
-        const val espresso = "3.3.0"
-        const val fragmentTesting = "1.3.0-rc01"
-        const val testExtJunit = "1.1.2"
-        const val testRules = "1.3.0"
-        const val testRunner = "1.3.0"
+        const val espresso = "3.4.0"
+        const val fragmentTesting = "1.3.6"
+        const val testExtJunit = "1.1.3"
+        const val testRules = "1.4.0"
+        const val testRunner = "1.4.0"
     }
 
     object Google {
         const val dagger = "2.39.1"
-        const val material = "1.3.0-rc01"
+        const val material = "1.4.0"
     }
 
     object Kotlinx {
