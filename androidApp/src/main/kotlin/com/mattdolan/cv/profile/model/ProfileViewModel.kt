@@ -66,7 +66,7 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun selectRole(role: Role) = intent {
-        (container.currentState as? ProfileState.Ready)?.experiences?.firstOrNull { it.roles.contains(role) }?.let { experience ->
+        (state as? ProfileState.Ready)?.experiences?.firstOrNull { it.roles.contains(role) }?.let { experience ->
             postSideEffect(SideEffect.NavigateToRoleDetails(experience, role))
         }
     }

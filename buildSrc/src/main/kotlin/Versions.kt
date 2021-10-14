@@ -16,20 +16,20 @@
 
 object Versions {
 
-    const val kotlin = "1.4.30"
+    const val kotlin = "1.5.31"
 
-    const val androidGradlePlugin = "4.1.2"
+    const val androidGradlePlugin = "7.0.2"
     const val detektGradlePlugin = "1.15.0"
     const val gradleVersionsPlugin = "0.36.0"
     const val markdownlintGradlePlugin = "0.6.0"
 
     const val coil = "1.1.1"
-    const val coroutines = "1.4.2"
-    const val coroutinesNative = "1.4.2-native-mt"
+    const val coroutines = "1.5.2"
+    const val coroutinesNative = "1.5.2-native-mt"
     const val groupie = "2.9.0"
     const val ktor = "1.5.1"
     const val multiplatformSettings = "0.7.2"
-    const val orbitMvi = "3.0.1"
+    const val orbitMvi = "4.2.0"
     const val sqlDelight = "1.4.4"
     const val sqliter = "0.7.1"
 
@@ -45,7 +45,6 @@ object Versions {
         const val appCompat = "1.2.0"
         const val constraintLayout = "2.1.0-alpha2"
         const val fragment = "1.3.0"
-        const val hilt = "1.0.0-alpha02"
         const val lifecycle = "2.3.0"
         const val navigation = "2.3.3"
         const val vectorDrawable = "1.1.0"
@@ -58,12 +57,12 @@ object Versions {
     }
 
     object Google {
-        const val dagger = "2.31.1-alpha"
+        const val dagger = "2.39.1"
         const val material = "1.3.0-rc01"
     }
 
     object Kotlinx {
-        const val dateTime = "0.1.1"
-        const val serialization = "1.0.1"
+        const val dateTime = "0.3.0"
+        const val serialization = "1.3.0"
     }
 }

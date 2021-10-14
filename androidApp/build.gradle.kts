@@ -1,5 +1,3 @@
-import dagger.hilt.android.plugin.HiltExtension
-
 /*
  * Copyright 2021 Matthew Dolan
  *
@@ -63,13 +61,10 @@ dependencies {
     implementation("com.squareup.leakcanary:plumber-android:${Versions.leakCanary}")
 
     // Dependency Injection
-    implementation("androidx.hilt:hilt-lifecycle-viewmodel:${Versions.AndroidX.hilt}")
-    kapt("androidx.hilt:hilt-compiler:${Versions.AndroidX.hilt}")
     implementation("com.google.dagger:hilt-android:${Versions.Google.dagger}")
-    kapt("com.google.dagger:hilt-android-compiler:${Versions.Google.dagger}")
+    kapt("com.google.dagger:hilt-compiler:${Versions.Google.dagger}")
+    kaptAndroidTest("com.google.dagger:hilt-compiler:${Versions.Google.dagger}")
     androidTestImplementation("com.google.dagger:hilt-android-testing:${Versions.Google.dagger}")
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:${Versions.Google.dagger}")
-    kaptAndroidTest("androidx.hilt:hilt-compiler:${Versions.AndroidX.hilt}")
 
     // Testing
     implementation("androidx.test.espresso:espresso-idling-resource:${Versions.AndroidX.espresso}")
@@ -89,11 +84,11 @@ dependencies {
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdk = 30
     defaultConfig {
         applicationId = "com.mattdolan.cv"
-        minSdkVersion(24)
-        targetSdkVersion(30)
+        minSdk = 24
+        targetSdk = 30
         versionCode = 1
         versionName = "1.0"
         vectorDrawables.useSupportLibrary = true
@@ -133,8 +128,4 @@ android {
             isIncludeAndroidResources = true
         }
     }
-}
-
-configure<HiltExtension> {
-    enableTransformForLocalTests = true
 }
