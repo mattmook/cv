@@ -22,8 +22,6 @@
 		4483D2ED25D7B2E000EB4B61 /* RoleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483D2EC25D7B2E000EB4B61 /* RoleViewModel.swift */; };
 		4483D2F125D7B36300EB4B61 /* RoleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483D2F025D7B36300EB4B61 /* RoleState.swift */; };
 		4483D2F525D7C4B700EB4B61 /* RoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4483D2F425D7C4B700EB4B61 /* RoleView.swift */; };
-		4493FD4D25D3278400CA6D76 /* shared.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4493FD4C25D3278400CA6D76 /* shared.xcframework */; };
-		4493FD4E25D3278400CA6D76 /* shared.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4493FD4C25D3278400CA6D76 /* shared.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4493FD6225D341D600CA6D76 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4493FD6125D341D600CA6D76 /* ProfileView.swift */; };
 		4493FD6825D3447500CA6D76 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4493FD6725D3447500CA6D76 /* ProfileViewModel.swift */; };
 		4493FD7225D3C4B000CA6D76 /* ProfileState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4493FD7125D3C4B000CA6D76 /* ProfileState.swift */; };
@@ -45,6 +43,8 @@
 		7555FF8B242A565B00829871 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7555FF89242A565B00829871 /* LaunchScreen.storyboard */; };
 		7555FF96242A565B00829871 /* iosAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF95242A565B00829871 /* iosAppTests.swift */; };
 		7555FFA1242A565B00829871 /* iosAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FFA0242A565B00829871 /* iosAppUITests.swift */; };
+		C6FF38D22657D14800114526 /* shared.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4493FD4C25D3278400CA6D76 /* shared.xcframework */; };
+		C6FF38D32657D14800114526 /* shared.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4493FD4C25D3278400CA6D76 /* shared.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,13 +65,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		7555FFB4242A642300829871 /* Embed Frameworks */ = {
+		C6FF38D42657D14800114526 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4493FD4E25D3278400CA6D76 /* shared.xcframework in Embed Frameworks */,
+				C6FF38D32657D14800114526 /* shared.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,8 +129,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4483D2D525D748A000EB4B61 /* SDWebImageSwiftUI in Frameworks */,
-				4493FD4D25D3278400CA6D76 /* shared.xcframework in Frameworks */,
 				442F525325D4933100CF3CE6 /* Lottie in Frameworks */,
+				C6FF38D22657D14800114526 /* shared.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,7 +339,7 @@
 				44F40AE125DD468B00672C52 /* ShellScript */,
 				7555FF78242A565900829871 /* Frameworks */,
 				7555FF79242A565900829871 /* Resources */,
-				7555FFB4242A642300829871 /* Embed Frameworks */,
+				C6FF38D42657D14800114526 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

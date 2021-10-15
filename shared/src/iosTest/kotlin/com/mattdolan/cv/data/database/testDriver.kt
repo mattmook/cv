@@ -30,7 +30,7 @@ private fun defaultSchema(): SqlDriver.Schema {
 
 actual fun testDriver(): SqlDriver {
     val name = "testdb"
-    DatabaseFileContext.deleteDatabase(name)
+    DatabaseFileContext.deleteDatabase(name, null)
     return NativeSqliteDriver(defaultSchema(), name).apply {
         AppDatabase.Schema.create(this)
     }

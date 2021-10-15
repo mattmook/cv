@@ -18,20 +18,21 @@ package com.mattdolan.cv.common.ui
 
 import android.os.Bundle
 import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.idling.CountingIdlingResource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import java.lang.ref.WeakReference
+import javax.inject.Inject
 
 /**
  * A ViewModel to save the state of a MotionLayout - this is necessary as using NavController means Fragments get recreated on navigation
  * See https://stackoverflow.com/a/60877714/14508577
  */
-class MotionLayoutSavedStateViewModel @ViewModelInject constructor(
-    @Assisted private val savedStateHandle: SavedStateHandle
+@HiltViewModel
+class MotionLayoutSavedStateViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private var motionLayout: WeakReference<MotionLayout>? = null
@@ -39,7 +40,12 @@ class MotionLayoutSavedStateViewModel @ViewModelInject constructor(
     private val idlingResource = CountingIdlingResource("motionLayout")
 
     private val listener = object : MotionLayout.TransitionListener {
-        override fun onTransitionChange(motionLayout: MotionLayout, startId: Int, endId: Int, progress: Float) {
+        override fun onTransitionChange(
+            motionLayout: MotionLayout,
+            startId: Int,
+            endId: Int,
+            progress: Float
+        ) {
             savedStateHandle.set("motion", motionLayout.transitionState)
         }
 
@@ -53,7 +59,12 @@ class MotionLayoutSavedStateViewModel @ViewModelInject constructor(
             idlingResource.increment()
         }
 
-        override fun onTransitionTrigger(motionLayout: MotionLayout, triggerId: Int, positive: Boolean, progress: Float) = Unit
+        override fun onTransitionTrigger(
+            motionLayout: MotionLayout,
+            triggerId: Int,
+            positive: Boolean,
+            progress: Float
+        ) = Unit
     }
 
     fun bind(motionLayout: MotionLayout) {

@@ -48,9 +48,9 @@ kotlin {
                 implementation("io.ktor:ktor-client-serialization:${Versions.ktor}")
                 implementation("com.russhwolf:multiplatform-settings:${Versions.multiplatformSettings}")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:${Versions.Kotlinx.dateTime}")
-                implementation("co.touchlab:stately-iso-collections:1.1.3-a1")
-                implementation("co.touchlab:stately-isolate:1.1.3-a1")
-                implementation("co.touchlab:stately-concurrency:1.1.3")
+                implementation("co.touchlab:stately-iso-collections:1.1.10-a1")
+                implementation("co.touchlab:stately-isolate:1.1.10-a1")
+                implementation("co.touchlab:stately-concurrency:1.1.10")
             }
         }
         val commonTest by getting {
@@ -89,7 +89,7 @@ kotlin {
         val iosTest by getting {
             dependencies {
                 implementation("com.squareup.sqldelight:native-driver:${Versions.sqlDelight}")
-                implementation("co.touchlab:sqliter:${Versions.sqliter}")
+                implementation("co.touchlab:sqliter-driver:${Versions.sqliter}")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core") {
                     version {
                         strictly(Versions.coroutinesNative)
@@ -107,13 +107,11 @@ sqldelight {
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdk = 30
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(24)
-        targetSdkVersion(30)
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = 24
+        targetSdk = 30
     }
     buildTypes {
         getByName("release") {

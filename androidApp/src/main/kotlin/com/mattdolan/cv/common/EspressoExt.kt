@@ -20,7 +20,7 @@ val isRunningEspresso: Boolean by lazy {
     try {
         Class.forName("androidx.test.espresso.Espresso")
         true
-    } catch (e: ClassNotFoundException) {
+    } catch (ignored: ClassNotFoundException) {
         false
     }
 }
