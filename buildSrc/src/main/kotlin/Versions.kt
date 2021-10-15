@@ -31,12 +31,12 @@ object Versions {
     const val multiplatformSettings = "0.8.1"
     const val orbitMvi = "4.2.0"
     const val sqlDelight = "1.5.2"
-    const val sqliter = "0.7.1"
+    const val sqliter = "1.0.10"
 
     const val junit4 = "4.13.2"
     const val kaspresso = "1.2.1"
     const val kotest = "4.6.3"
-    const val mockitoKotlin = "2.2.0"
+    const val mockitoKotlin = "4.0.0"
 
     const val desugar = "1.1.5"
     const val leakCanary = "2.7"

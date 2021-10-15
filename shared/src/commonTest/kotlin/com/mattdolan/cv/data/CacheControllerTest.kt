@@ -22,6 +22,7 @@ import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.shouldBe
 import kotlinx.datetime.Clock
 import kotlin.test.Test
+import kotlin.time.Duration
 import kotlin.time.days
 import kotlin.time.minutes
 
@@ -42,14 +43,14 @@ class CacheControllerTest {
 
         // And settings is updated to now
         val now = Clock.System.now()
-        (mockSettings.data["cache_timestamp"] in (now - 1.minutes).toEpochMilliseconds()..now.toEpochMilliseconds()).shouldBeTrue()
+        (mockSettings.data["cache_timestamp"] in (now - Duration.minutes(1)).toEpochMilliseconds()..now.toEpochMilliseconds()).shouldBeTrue()
     }
 
     @Test
 
     fun storageResetsWhenCacheOlderThanOneDay() {
         // Given settings with a value older than one day
-        mockSettings.data["cache_timestamp"] = Clock.System.now().minus(1.days + 1.minutes).toEpochMilliseconds()
+        mockSettings.data["cache_timestamp"] = Clock.System.now().minus(Duration.days(1) + Duration.minutes(1)).toEpochMilliseconds()
 
         // When we verify the cache
         var resetStorageCalled = false
@@ -60,13 +61,13 @@ class CacheControllerTest {
 
         // And settings is updated to now
         val now = Clock.System.now()
-        (mockSettings.data["cache_timestamp"] in (now - 1.minutes).toEpochMilliseconds()..now.toEpochMilliseconds()).shouldBeTrue()
+        (mockSettings.data["cache_timestamp"] in (now - Duration.minutes(1)).toEpochMilliseconds()..now.toEpochMilliseconds()).shouldBeTrue()
     }
 
     @Test
     fun storageRetainedWhenCacheYoungerThanOneDay() {
         // Given settings with a value younger than one day
-        val oneDayAgo = Clock.System.now().minus(1.days - 1.minutes).toEpochMilliseconds()
+        val oneDayAgo = Clock.System.now().minus(Duration.days(1) - Duration.minutes(1)).toEpochMilliseconds()
         mockSettings.data["cache_timestamp"] = oneDayAgo
 
         // When we verify the cache

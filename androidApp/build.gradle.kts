@@ -68,7 +68,7 @@ dependencies {
 
     // Testing
     implementation("androidx.test.espresso:espresso-idling-resource:${Versions.AndroidX.espresso}")
-    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlin}")
     testImplementation("junit:junit:${Versions.junit4}")
     androidTestImplementation("androidx.test.espresso:espresso-core:${Versions.AndroidX.espresso}")
     androidTestImplementation("androidx.test.espresso:espresso-contrib:${Versions.AndroidX.espresso}")
