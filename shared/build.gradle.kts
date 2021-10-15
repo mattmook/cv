@@ -89,7 +89,7 @@ kotlin {
         val iosTest by getting {
             dependencies {
                 implementation("com.squareup.sqldelight:native-driver:${Versions.sqlDelight}")
-                implementation("co.touchlab:sqliter:${Versions.sqliter}")
+                implementation("co.touchlab:sqliter-driver:${Versions.sqliter}")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core") {
                     version {
                         strictly(Versions.coroutinesNative)
