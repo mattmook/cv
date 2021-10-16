@@ -53,6 +53,9 @@ dependencies {
     implementation("com.xwray:groupie-viewbinding:${Versions.groupie}")
     implementation("io.coil-kt:coil-svg:${Versions.coil}")
 
+    // Splash Screen
+    implementation("androidx.core:core-splashscreen:${Versions.AndroidX.splashscreen}")
+
     // Networking
     implementation("io.ktor:ktor-client-serialization-jvm:${Versions.ktor}")
 
@@ -75,7 +78,7 @@ dependencies {
     androidTestImplementation("androidx.test:runner:${Versions.AndroidX.testRunner}")
     androidTestImplementation("androidx.test:rules:${Versions.AndroidX.testRules}")
     androidTestImplementation("androidx.test.ext:junit-ktx:${Versions.AndroidX.testExtJunit}")
-    debugImplementation("androidx.fragment:fragment-testing:${Versions.AndroidX.fragmentTesting}")
+    androidTestImplementation("androidx.fragment:fragment-testing:${Versions.AndroidX.fragmentTesting}")
     androidTestImplementation("com.kaspersky.android-components:kaspresso:${Versions.kaspresso}")
     testImplementation("io.kotest:kotest-assertions-core:${Versions.kotest}")
     androidTestImplementation("io.kotest:kotest-assertions-core:${Versions.kotest}")
@@ -84,11 +87,11 @@ dependencies {
 }
 
 android {
-    compileSdk = 30
+    compileSdk = 31
     defaultConfig {
         applicationId = "com.mattdolan.cv"
         minSdk = 24
-        targetSdk = 30
+        targetSdk = 31
         versionCode = 1
         versionName = "1.0"
         vectorDrawables.useSupportLibrary = true

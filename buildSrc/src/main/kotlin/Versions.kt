@@ -47,6 +47,7 @@ object Versions {
         const val fragment = "1.3.6"
         const val lifecycle = "2.3.1"
         const val navigation = "2.3.5"
+        const val splashscreen = "1.0.0-alpha02"
         const val vectorDrawable = "1.1.0"
 
         const val espresso = "3.4.0"
