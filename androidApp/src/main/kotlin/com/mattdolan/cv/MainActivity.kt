@@ -17,10 +17,23 @@
 package com.mattdolan.cv
 
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.platform.LocalContext
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.findNavController
+import coil.compose.LocalImageLoader
 import com.mattdolan.cv.androidApp.R
+import com.mattdolan.cv.di.ImageLoaderModule
+import com.mattdolan.cv.domain.Experience
+import com.mattdolan.cv.domain.PersonalDetails
+import com.mattdolan.cv.domain.Role
+import com.mattdolan.cv.domain.Skill
+import com.mattdolan.cv.profile.ProfileReadyScreen
+import com.mattdolan.cv.profile.ProfileScreen
+import com.mattdolan.cv.profile.model.ProfileState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,7 +45,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         installSplashScreen()
+
         setContentView(R.layout.main_activity)
+        //if (true) return
+
+        setContent {
+            CompositionLocalProvider(
+                LocalImageLoader provides ImageLoaderModule.provideImageLoader(LocalContext.current)
+            ) {
+
+                //ErrorScreen(stringResource(R.string.sorry), stringResource(R.string.retry), {})
+                ProfileScreen(viewModel = viewModel())
+            }
+        }
     }
 
     override fun onSupportNavigateUp() = navController.navigateUp()

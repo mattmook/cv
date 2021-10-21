@@ -175,11 +175,11 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     private fun sideEffect(sideEffect: SideEffect) {
         when (sideEffect) {
             is SideEffect.NavigateToRoleDetails -> {
-                findNavController().navigate(
+                /*findNavController().navigate(
                     ProfileFragmentDirections.actionProfileFragmentToRoleDetailFragment(
                         RoleDetailArguments(sideEffect.experience, sideEffect.role)
                     )
-                )
+                )*/
             }
         }
     }

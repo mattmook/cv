@@ -1,15 +1,30 @@
 [
   {
+    "company": "AND Digital",
+    "logoUrl": "https://mattdolan.com/cv/company-logo/and-digital.svg",
+    "industry": "Information technology & services",
+    "location": "London",
+    "period": "05/2021 - present",
+    "roles": [
+      {
+        "title": "Android Lead",
+        "team": "British Airways",
+        "period": "05/2021 - present",
+        "detailUrl": "experience/and-digital/british-airways.json"
+      }
+    ]
+  },
+  {
     "company": "Babylon Health",
     "logoUrl": "https://mattdolan.com/cv/company-logo/babylon-health.svg",
     "industry": "Health care",
     "location": "London",
-    "period": "07/2018 - present",
+    "period": "07/2018 - 04/2021",
     "roles": [
       {
         "title": "Senior Android Engineer",
         "team": "Android platform team",
-        "period": "07/2018 - present",
+        "period": "07/2018 - 04/2021",
         "detailUrl": "experience/babylon-health/senior-android-engineer.json"
       }
     ]

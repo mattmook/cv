@@ -23,6 +23,7 @@ object Versions {
     const val gradleVersionsPlugin = "0.36.0"
     const val markdownlintGradlePlugin = "0.6.0"
 
+    const val accompanist = "0.20.0"
     const val coil = "1.4.0"
     const val coroutines = "1.5.2"
     const val coroutinesNative = "1.5.2-native-mt"
@@ -49,6 +50,13 @@ object Versions {
         const val navigation = "2.3.5"
         const val splashscreen = "1.0.0-alpha02"
         const val vectorDrawable = "1.1.0"
+
+        const val activityCompose = "1.4.0-rc01"
+        const val animationGraphics = "1.1.0-alpha06"
+        const val compose = "1.1.0-alpha06"
+        const val constraintLayoutCompose = "1.0.0-rc01"
+        const val lifecycleViewmodelCompose = "2.4.0-rc01"
+        const val navigationCompose = "2.4.0-alpha10"
 
         const val espresso = "3.4.0"
         const val fragmentTesting = "1.3.6"

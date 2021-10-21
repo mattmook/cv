@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<font-family xmlns:app="http://schemas.android.com/apk/res-auto"
-        app:fontProviderAuthority="com.google.android.gms.fonts"
-        app:fontProviderPackage="com.google.android.gms"
-        app:fontProviderQuery="Roboto Slab"
-        app:fontProviderCerts="@array/com_google_android_gms_fonts_certs">
+<font-family xmlns:app="http://schemas.android.com/apk/res-auto">
+    <font
+        app:font="@font/roboto_slab_regular"
+        app:fontStyle="normal"
+        app:fontWeight="400" />
+    <font
+        app:font="@font/roboto_slab_light"
+        app:fontStyle="normal"
+        app:fontWeight="300" />
+    <font
+        app:font="@font/roboto_slab_light_italic"
+        app:fontStyle="italic"
+        app:fontWeight="300" />
 </font-family>

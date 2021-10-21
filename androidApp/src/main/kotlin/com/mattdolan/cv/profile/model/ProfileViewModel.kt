@@ -42,9 +42,10 @@ class ProfileViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel(), ContainerHost<ProfileState, SideEffect> {
 
-    override val container: Container<ProfileState, SideEffect> = container(ProfileState.Loading, savedStateHandle) {
-        if (it !is ProfileState.Ready) loadProfile()
-    }
+    override val container: Container<ProfileState, SideEffect> =
+        container(ProfileState.Loading, savedStateHandle) {
+            if (it !is ProfileState.Ready) loadProfile()
+        }
 
     fun loadProfile() = intent {
         try {
@@ -59,15 +60,22 @@ class ProfileViewModel @Inject constructor(
             }
 
             @Suppress("UNCHECKED_CAST")
-            reduce { ProfileState.Ready(personalDetails as PersonalDetails, skills as List<Skill>, experiences as List<Experience>) }
+            reduce {
+                ProfileState.Ready(
+                    personalDetails = personalDetails as PersonalDetails,
+                    skills = skills as List<Skill>,
+                    experiences = experiences as List<Experience>
+                )
+            }
         } catch (expected: Exception) {
             reduce { ProfileState.Error }
         }
     }
 
     fun selectRole(role: Role) = intent {
-        (state as? ProfileState.Ready)?.experiences?.firstOrNull { it.roles.contains(role) }?.let { experience ->
-            postSideEffect(SideEffect.NavigateToRoleDetails(experience, role))
-        }
+        (state as? ProfileState.Ready)?.experiences?.firstOrNull { it.roles.contains(role) }
+            ?.let { experience ->
+                postSideEffect(SideEffect.NavigateToRoleDetails(experience, role))
+            }
     }
 }

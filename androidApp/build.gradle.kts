@@ -52,6 +52,29 @@ dependencies {
     implementation("com.xwray:groupie:${Versions.groupie}")
     implementation("com.xwray:groupie-viewbinding:${Versions.groupie}")
     implementation("io.coil-kt:coil-svg:${Versions.coil}")
+    implementation("io.coil-kt:coil-compose:${Versions.coil}")
+
+    implementation("com.google.accompanist:accompanist-flowlayout:${Versions.accompanist}")
+
+    implementation("androidx.compose.ui:ui:${Versions.AndroidX.compose}")
+    // Tooling support (Previews, etc.)
+    implementation("androidx.compose.ui:ui-tooling:${Versions.AndroidX.compose}")
+    // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
+    implementation("androidx.compose.foundation:foundation:${Versions.AndroidX.compose}")
+    // Material Design
+    implementation("androidx.compose.material:material:${Versions.AndroidX.compose}")
+    // Integration with activities
+    implementation("androidx.activity:activity-compose:${Versions.AndroidX.activityCompose}")
+    // Integration with ViewModels
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.AndroidX.lifecycleViewmodelCompose}")
+    // Integration with observables
+    implementation("androidx.compose.runtime:runtime-livedata:${Versions.AndroidX.compose}")
+    // Navigation
+    implementation("androidx.navigation:navigation-compose:${Versions.AndroidX.navigationCompose}")
+    // Animated Vector Drawables
+    implementation("androidx.compose.animation:animation-graphics:${Versions.AndroidX.animationGraphics}")
+    // Constraint layout
+    implementation("androidx.constraintlayout:constraintlayout-compose:${Versions.AndroidX.constraintLayoutCompose}")
 
     // Splash Screen
     implementation("androidx.core:core-splashscreen:${Versions.AndroidX.splashscreen}")
@@ -117,6 +140,10 @@ android {
     buildFeatures {
         buildConfig = true
         viewBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.1.0-alpha05"
     }
 
     sourceSets.all {

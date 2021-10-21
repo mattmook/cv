@@ -6,4 +6,8 @@
 
     <color name="header_background">#ebebeb</color>
     <color name="list_item_connection">#979797</color>
+
+    <color name="chip_background">#ebebeb</color>
+    <color name="chip_text">#555555</color>
+    <color name="chip_border">#555555</color>
 </resources>
